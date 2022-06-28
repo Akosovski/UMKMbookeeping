@@ -18,8 +18,6 @@
 
 <div class="row mt-2 overflow-auto mh-100">
     <br>
-    {% include 'partials/_messages.html' %}
-    {% if pembukuans.count %}
     <div class="container mt-2">
         <table class="table table-striped">
             <thead>
@@ -32,26 +30,30 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>16/12/2022</td>
+                    <td>December 16, 2022</td>
                     <td>Pemasukan</td>
                     <td>Penjualan Keyboard</td>
-                    <td>350000</td>
-                    <td><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-secondary btn-sm">Ubah</a></td>
+                    <td>350000.0</td>
+                    <td><a href="#" class="btn btn-outline-dark btn-sm">Ubah</a></td>
                 </tr>
-                {% for pembukuan in page_obj %}
-                <tr>
-                    <td>{pembukuan.date}</td>
-                    <td>{pembukuan.category}</td>
-                    <td>{pembukuan.description}</td>
-                    <td>{pembukuan.amount}</td>
-                </tr>
-                { % endfor %}
+                {% if pembukuans.count %}
+                    {% for pembukuan in pembukuans %}
+                    <tr>
+                        <td>{{pembukuan.date}}</td>
+                        <td>{{pembukuan.category}}</td>
+                        <td>{{pembukuan.description}}</td>
+                        <td>{{pembukuan.amount}}</td>
+                        <td><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-outline-dark btn-sm">Ubah</a></td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
             </tbody>
         </table>
 
         <div>
-            Halaman {{ page_obj }} dari {{ page_obj.paginator.num_pages }}
+            {{ page_obj }}
         </div>
+
         <ul class="pagination align-right float-right mr-auto">
             {% if page_obj.has_previous %}
             <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a></li>
@@ -63,7 +65,6 @@
             <li class="page-item"> <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
             {% endif %}
         </ul>
-        {% endif % }
     </div>
 </div>
 

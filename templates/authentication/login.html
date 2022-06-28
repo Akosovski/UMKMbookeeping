@@ -3,62 +3,53 @@
 
 {% block content %}
 
-<div class="card"></div>
-<div class="card-body py-5"></div>
-<br>
-<br>
-<br>
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-            <div class="card-title">
-                <h4>LOGIN</h4>
-                <br>
-                <form action="{% url 'login' %}" method="post">
-
-                    {% csrf_token %}
-
-                    {% include 'partials/_messages.html' %}
-                    <div class="form-group">
-                        <input 
-                            type="text"
-                            name="username" 
-                            placeholder= "Username" 
-                            class="form-control form-control-sm" 
-                            id="usernameField"
-                            value="{{fieldValues.username}}"
-                        />
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <input 
-                            type="password" 
-                            name="password" 
-                            placeholder="Password" 
-                            class="form-control form-control-sm" 
-                            id="passwordField"
-                        />
-                        <small class="float-end py-2 showPasswordToggle">SHOW</small>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="col text-center">
+<div class="container">
+    <div class="card position-absolute top-50 start-50 translate-middle p-5 pt-4" style="min-width: 22rem; max-width: 28rem; max-height: 36rem;">
+        <form action="{% url 'login' %}" method="post">
+        <div class="row"> 
+                <h3 class="m-auto">LOGIN</h3>
+                {% csrf_token %}
+                <div class="overflow-hidden">{% include 'partials/_messages.html' %}</div>
+                <div class="form-group mt-4">
+                    <label for="exampleFormControlInput1" class="form-label">Username</label>
+                    <input 
+                        type="text"
+                        name="username" 
+                        placeholder= "Username" 
+                        class="form-control" 
+                        id="usernameField"
+                        value="{{fieldValues.username}}"
+                    />
+                </div>
+                <div class="form-group mt-4">
+                    <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="Password" 
+                        class="form-control" 
+                        id="passwordField"
+                    />
+                    <small class="btn btn-link float-end py-2 showPasswordToggle" style="text-decoration: none;">SHOW</small>
+                </div>
+                <div class="container mt-3 mx-auto">
+                    <div class="d-flex">
                         <input 
                             type="submit" 
                             value="Login" 
-                            class="btn btn-block btn-warning submit-btn"
-                         />
-                    </div>     
-                </form>
+                            class="w-100 m-auto btn btn-success btn-md"
+                            style="width: auto"
+                        />
+                    </div>
+                    <br>
+                    <div class="d-flex">
+                        <a type="button" href="{% url 'register' %}" class="w-100 m-auto btn btn-outline-primary btn-md" style="width: auto">Register</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
+        </form>
     </div>
-    <div class="col-md-4"></div>
 </div>
-
 <script src="{% static 'js/register.js' %}"></script>
 
 {% endblock content %}

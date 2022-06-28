@@ -11,8 +11,11 @@
         <a class="nav-link" href="{% url 'pembukuan' %}">Pembukuan</a>
         <a class="nav-link" href="#">Product</a>
         <a class="nav-link" href="#">Karyawan</a>
-        <a class="nav-link" href="#">Bug Report</a>
-        <a class="nav-link" href="#"><span style="color: red;">Sign Out</span></a>
+        <form action="{% url 'logout' %}" method="POST">
+          {% csrf_token %}
+          <input class="nav-link btn btn-link fw-bold" type="submit" value="Sign out" style="margin-top: -1px; color: red;">
+        </form>
+        
       </div>
     </div>
   </div>
