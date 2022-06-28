@@ -7,7 +7,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{% url 'pembukuan' %}">Pembukuan</a></li>
-                <li class="breadcrumb-item active">Tambah Pembukuan</li>
+                <li class="breadcrumb-item active">Ubah Pembukuan</li>
             </ol>
         </nav>
     </div>
@@ -19,14 +19,14 @@
                     <label for="amountInput" class="mb-1">Jumlah</label>
                     <div class="form-group">
                         <input type="number" class="form-control" name="amount" value="{{values.amount}}">
-                        <div class="form-text">Masukan Jumlah</div>
+                        <div class="form-text">Ubah Jumlah</div>
                     </div>
                 </div>
                 <div class="card-body">
                     <label for="descriptionInput" class="mb-1">Deskripsi</label>
                     <div class="form-group">
                         <input type="text" class="form-control" name="description" value="{{values.description}}">
-                        <div class="form-text">Masukan Deskripsi</div>
+                        <div class="form-text">Ubah Deskripsi</div>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
                                 <option name="category" value="{{ category.name }}">{{ category.name }}</option>{{ category.name }}</option>
                             {% endfor %}
                         </select>
-                        <div class="form-text">Pilih Kategori</div>
+                        <div class="form-text">Ubah Kategori</div>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <input type="submit" value="Tambah" class="btn btn-primary">
+                    <input type="submit" value="Ubah" class="btn btn-primary">
                 </div>    
             </form>
         </div>

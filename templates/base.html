@@ -14,11 +14,12 @@
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
   </head>
   <body>
-
-    {% include 'partials/_sidebar.html' %}
+    <div class="sticky-container">
+      {% include 'partials/_sidebar.html' %}
+    </div>  
     
     <div class="container-fluid">
-
+      {% include 'partials/_messages.html' %}
           {% block content %}
 
           {% endblock %}
