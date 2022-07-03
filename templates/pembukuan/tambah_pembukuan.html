@@ -6,12 +6,11 @@
     <div class="container m-1 mb-0">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'pembukuan' %}">Pembukuan</a></li>
-                <li class="breadcrumb-item active">Tambah Pembukuan</li>
+                <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Tambah Pembukuan</p></li>
             </ol>
         </nav>
     </div>
-    <div class="container m-1 mb-4">
+    <div class="container m-1 mt-0 mb-4">
         <div class="card">
             <div class="card-body">
                 <form action="{% url 'tambah-pembukuan' %}" method="POST">
@@ -50,8 +49,8 @@
                         <div class="form-text">Atur Tanggal</div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <input type="submit" value="Tambah" class="btn btn-primary">
+                <div class="card-body text-center mb-3">
+                    <input type="submit" value="Tambah Pembukuan" class="btn btn-primary">
                 </div>    
             </form>
         </div>

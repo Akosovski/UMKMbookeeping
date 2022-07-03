@@ -84,3 +84,10 @@ def ubah_pembukuan(request, id):
         messages.success(request, 'Perubahan Pembukuan Sukses.')
 
         return redirect('pembukuan')
+
+def hapus_pembukuan(request, id):
+    pembukuan = Pembukuan.objects.get(pk=id)
+    pembukuan.delete()
+
+    messages.success(request, 'Pembukuan Berhasil Terhapus.')
+    return redirect('pembukuan')

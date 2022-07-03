@@ -3,16 +3,16 @@
 {% block content %}
 
 <br>
-<div class="container m-0">
-    <div class="row g-0">
-        <div class="col-5 col-md-8 p-0">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active mt-2" aria-current="page"><p class="fs-4">Pembukuan</p></li>
-                </ol>
-            </nav>
-        </div>
-        <div class="col-7 col-md-4 mx-auto"><a href="{% url 'tambah-pembukuan' %}" class="btn btn-primary">Tambah Pembukuan</a></div>
+<div class="row g-0 m-2">
+    <div class="col-6 col-md-9 p-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Pembukuan</p></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-6 col-md-3 mx-auto">
+        <a href="{% url 'tambah-pembukuan' %}" class="btn btn-md btn-outline-primary">Tambah Pembukuan</a>
     </div>
 </div>
 
@@ -29,21 +29,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="align-middle">
                     <td>December 16, 2022</td>
                     <td>Pemasukan</td>
                     <td>Penjualan Keyboard</td>
                     <td>350000.0</td>
-                    <td><a href="#" class="btn btn-outline-dark btn-sm">Ubah</a></td>
+                    <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
                 </tr>
                 {% if pembukuans.count %}
                     {% for pembukuan in pembukuans %}
-                    <tr>
+                    <tr class="align-middle">
                         <td>{{pembukuan.date}}</td>
                         <td>{{pembukuan.category}}</td>
                         <td>{{pembukuan.description}}</td>
-                        <td>{{pembukuan.amount}}</td>
-                        <td><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-outline-dark btn-sm">Ubah</a></td>
+                        <td id="amount">{{pembukuan.amount}}</td>
+                        <td><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                     </tr>
                     {% endfor %}
                 {% endif %}
@@ -67,5 +67,16 @@
         </ul>
     </div>
 </div>
+
+<!-- COBAIN GANTI FORMAT KE IDR (GABISA) -->
+<script>
+    const myObj = {
+        style: "currency",
+        currency: "IDR"
+    }
+    let num = document.getElementById("amount").innerHTML;
+    let text = num.toLocaleString("id-ID", myObj);
+    document.getElementById("amount").innerHTML = text;
+</script>
 
 {% endblock content %}

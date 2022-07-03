@@ -2,14 +2,20 @@
 
 {% block content %}
 <br>
-<div class="row">
-    <div class="container m-1 mb-0">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'pembukuan' %}">Pembukuan</a></li>
-                <li class="breadcrumb-item active">Ubah Pembukuan</li>
-            </ol>
-        </nav>
+<div class="row m-1">
+    <div class="container m-0">
+        <div class="row g-0">
+            <div class="col-9 col-md-11 p-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Ubah Pembukuan</p></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-3 col-md-1 mx-auto">
+                <a href="{% url 'hapus-pembukuan' pembukuans.id %}" class="btn btn-md btn-outline-danger">Hapus</a>
+            </div>
+        </div>
     </div>
     <div class="container m-1 mb-4">
         <div class="card">
@@ -50,13 +56,12 @@
                         <div class="form-text">Atur Tanggal</div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <input type="submit" value="Ubah" class="btn btn-primary">
+                <div class="card-body text-center mb-3">
+                    <input type="submit" value="Simpan Perubahan" class="btn btn-primary">
                 </div>    
             </form>
         </div>
     </div>
-    
 </div>
 
 {% endblock content %}
