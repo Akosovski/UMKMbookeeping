@@ -25,7 +25,8 @@
                     <th>Tanggal</th>
                     <th>Kategori</th>
                     <th>Deskripsi</th>
-                    <th>Jumlah</th>
+                    <th>Harga</th>
+                    <th>Pajak</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,10 +36,19 @@
                         <td>{{pembukuan.date}}</td>
                         <td>{{pembukuan.category}}</td>
                         <td>{{pembukuan.description}}</td>
-                        <td id="amount">{{pembukuan.amount}}</td>
+                        <td id="price">{{pembukuan.price}}</td>
+                        <td id="price">{{pembukuan.tax}}</td>
                         <td><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                     </tr>
                     {% endfor %}
+                {% else %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Pembukuan Kosong.</td>
+                    <td></td>
+                    <td></td>
+                </tr>
                 {% endif %}
             </tbody>
         </table>

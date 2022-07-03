@@ -22,10 +22,17 @@
             <div class="card-body">
                 <form action="{% url 'ubah-pembukuan' pembukuans.id %}" method="POST">
                     {% csrf_token %}
-                    <label for="amountInput" class="mb-1">Jumlah</label>
+                    <label for="priceInput" class="mb-1">Harga</label>
                     <div class="form-group">
-                        <input type="number" class="form-control" name="amount" value="{{values.amount}}">
-                        <div class="form-text">Ubah Jumlah</div>
+                        <input type="number" class="form-control" name="price" value="{{values.price}}">
+                        <div class="form-text">Ubah Harga</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <label for="taxInput" class="mb-1">Pajak</label>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="tax" value="{{values.tax}}">
+                        <div class="form-text">Masukan Pajak (Jika ada)</div>
                     </div>
                 </div>
                 <div class="card-body">

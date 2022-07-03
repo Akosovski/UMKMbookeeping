@@ -29,12 +29,14 @@ def tambah_pembukuan(request):
         return render(request, 'pembukuan/tambah_pembukuan.html', context)
 
     if request.method == 'POST':
-        amount = request.POST.get('amount')
+        price = request.POST.get('price')
         description = request.POST.get('description')
         category = request.POST.get('category')
+        tax = request.POST.get('tax')
+        subtotal = request.POST.get('subtotal')
         date = request.POST.get('date')
 
-        if not amount:
+        if not price:
             messages.error(request, 'Jumlah perlu diisi.')
             return render(request, 'pembukuan/tambah_pembukuan.html')
 
@@ -42,7 +44,11 @@ def tambah_pembukuan(request):
             messages.error(request, 'Deskripsi perlu diisi.')
             return render(request, 'pembukuan/tambah_pembukuan.html')
 
-        Pembukuan.objects.create(owner=request.user, amount=amount, description=description, category=category, date=date)
+        if not date:
+            messages.error(request, 'Tanggal perlu diisi.')
+            return render(request, 'pembukuan/tambah_pembukuan.html')
+
+        Pembukuan.objects.create(owner=request.user, price=price, tax=tax, subtotal=subtotal, description=description, category=category, date=date)
         messages.success(request, 'Penambahan Pembukuan Sukses.')
 
         return redirect('pembukuan')
@@ -60,9 +66,11 @@ def ubah_pembukuan(request, id):
         return render(request, 'pembukuan/ubah_pembukuan.html', context)
         
     if request.method == 'POST':
-        amount = request.POST.get('amount')
+        price = request.POST.get('price')
+        tax = request.POST.get('tax')
+        subtotal = request.POST.get('subtotal')
         
-        if not amount:
+        if not price:
             messages.error(request, 'Jumlah perlu diisi.')
             return render(request, 'pembukuan/ubah_pembukuan.html', context)
 
@@ -79,10 +87,12 @@ def ubah_pembukuan(request, id):
             return render(request, 'pembukuan/ubah_pembukuan.html', context)
         
         pembukuans.owner = request.user
-        pembukuans.amount = amount
+        pembukuans.price = price
         pembukuans.date = date
         pembukuans.category = category
         pembukuans.description = description
+        pembukuans.tax = tax
+        pembukuans.subtotal = subtotal
 
         pembukuans.save()
         messages.success(request, 'Perubahan Pembukuan Sukses.')

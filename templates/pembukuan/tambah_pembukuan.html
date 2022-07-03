@@ -13,14 +13,28 @@
     <div class="container m-1 mt-0 mb-4">
         <div class="card">
             <div class="card-body">
-                <form action="{% url 'tambah-pembukuan' %}" method="POST">
+                <form name="tambah-pembukuan" action="{% url 'tambah-pembukuan' %}" method="POST">
                     {% csrf_token %}
-                    <label for="amountInput" class="mb-1">Jumlah</label>
+                    <label for="priceInput" class="mb-1">Harga</label>
                     <div class="form-group">
-                        <input type="number" class="form-control" name="amount" value="{{values.amount}}">
-                        <div class="form-text">Masukan Jumlah</div>
+                        <input type="number" class="form-control" name="price" value="{{values.price}}" id="priceField">
+                        <div class="form-text">Masukan Harga</div>
                     </div>
                 </div>
+                <div class="card-body">
+                    <label for="taxInput" class="mb-1">Pajak</label>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="tax" value="{{values.tax}}" id="taxField">
+                        <div class="form-text">Masukan Pajak (Jika ada)</div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <label for="totalInput" class="mb-1">Total</label>
+                    <input name="total" type="number" class="form-control">
+                    <div class="form-text" id="totalField">Otomatis Terupdate</div>
+                </div>
+
                 <div class="card-body">
                     <label for="descriptionInput" class="mb-1">Deskripsi</label>
                     <div class="form-group">

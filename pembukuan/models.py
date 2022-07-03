@@ -5,7 +5,9 @@ from django.utils.timezone import now
 
 # Create your models here.
 class Pembukuan(models.Model):
-    amount = models.FloatField()
+    price = models.FloatField()
+    tax = models.FloatField()
+    subtotal = models.FloatField()
     date = models.DateField(default=now)
     description = models.TextField()
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
