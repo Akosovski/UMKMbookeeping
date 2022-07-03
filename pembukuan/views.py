@@ -61,7 +61,6 @@ def ubah_pembukuan(request, id):
         
     if request.method == 'POST':
         amount = request.POST.get('amount')
-        pembukuans.owner = request.user
         
         if not amount:
             messages.error(request, 'Jumlah perlu diisi.')
@@ -75,12 +74,17 @@ def ubah_pembukuan(request, id):
             messages.error(request, 'Deskripsi perlu diisi.')
             return render(request, 'pembukuan/ubah_pembukuan.html', context)
         
+        if not date:
+            messages.error(request, 'Tanggal perlu diisi.')
+            return render(request, 'pembukuan/ubah_pembukuan.html', context)
+        
+        pembukuans.owner = request.user
         pembukuans.amount = amount
         pembukuans.date = date
         pembukuans.category = category
         pembukuans.description = description
 
-        Pembukuan.save()
+        pembukuans.save()
         messages.success(request, 'Perubahan Pembukuan Sukses.')
 
         return redirect('pembukuan')
