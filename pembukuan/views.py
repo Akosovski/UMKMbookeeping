@@ -38,15 +38,15 @@ def tambah_pembukuan(request):
 
         if not price:
             messages.error(request, 'Jumlah perlu diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html')
+            return render(request, 'pembukuan/tambah_pembukuan.html', context)
 
         if not description:
             messages.error(request, 'Deskripsi perlu diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html')
-
+            return render(request, 'pembukuan/tambah_pembukuan.html', context)
+        
         if not date:
             messages.error(request, 'Tanggal perlu diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html')
+            return render(request, 'pembukuan/tambah_pembukuan.html', context)
 
         Pembukuan.objects.create(owner=request.user, price=price, tax=tax, subtotal=subtotal, description=description, category=category, date=date)
         messages.success(request, 'Penambahan Pembukuan Sukses.')

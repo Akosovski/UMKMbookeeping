@@ -12,7 +12,7 @@
     </div>
     <div class="container m-1 mt-0 mb-4">
         <div class="card">
-            <div class="card-body">
+                <div class="card-body">
                 <form name="tambah-pembukuan" action="{% url 'tambah-pembukuan' %}" method="POST">
                     {% csrf_token %}
                     <label for="priceInput" class="mb-1">Harga</label>
@@ -21,6 +21,7 @@
                         <div class="form-text">Masukan Harga</div>
                     </div>
                 </div>
+
                 <div class="card-body">
                     <label for="taxInput" class="mb-1">Pajak</label>
                     <div class="form-group">
@@ -31,8 +32,10 @@
 
                 <div class="card-body">
                     <label for="totalInput" class="mb-1">Total</label>
-                    <input name="total" type="number" class="form-control">
-                    <div class="form-text" id="totalField">Otomatis Terupdate</div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="subtotal" value="{{values.subtotal}}" id="subtotalField">
+                        <div class="form-text">Otomatis Terupdate</div>
+                    </div>
                 </div>
 
                 <div class="card-body">

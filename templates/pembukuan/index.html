@@ -27,6 +27,7 @@
                     <th>Deskripsi</th>
                     <th>Harga</th>
                     <th>Pajak</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +38,8 @@
                         <td>{{pembukuan.category}}</td>
                         <td>{{pembukuan.description}}</td>
                         <td id="price">{{pembukuan.price}}</td>
-                        <td id="price">{{pembukuan.tax}}</td>
+                        <td id="tax">{{pembukuan.tax}}</td>
+                        <td id="subtotal">{{pembukuan.subtotal}}</td>
                         <td><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                     </tr>
                     {% endfor %}
@@ -45,7 +47,8 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>Pembukuan Kosong.</td>
+                    <td>Pembukuan Kosong</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
