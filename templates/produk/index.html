@@ -48,14 +48,14 @@
                             <td>{{produk.dateadded}}</td>
                             <td>{{produk.dateupdated}}</td>
                             <td>{{produk.vendor}}</td>
-                            <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
+                            <td><a href="{% url 'ubah-produk' produk.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                         </tr>
                     {% endfor %}
                     {% else %}
                     <tr>
                         <td></td>
                         <td></td>
-                        <td>Pembukuan Kosong</td>
+                        <td>Produk Kosong</td>
                         <td></td>
                         <td></td>
                         <td></td>

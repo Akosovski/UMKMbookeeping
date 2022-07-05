@@ -18,7 +18,7 @@
                     <label for="nameInput" class="mb-1">Nama</label>
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" value="{{values.name}}" placeholder="Nama Produk" required>
-                        <div class="form-text">Masukan Nama <span style="color: red;">(Wajib diisi)</span></div>
+                        <div class="form-text">Masukan Nama Produk <span style="color: red;">(Wajib diisi)</span></div>
                     </div>
                 </div>
                 
@@ -43,6 +43,14 @@
                     <div class="form-group">
                         <input type="text" class="form-control" name="description" value="{{values.description}}" id="descriptionField" placeholder="Keterangan" required>
                         <div class="form-text">Masukan Deskripsi <span style="color: red;">(Wajib diisi)</span></div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <label for="stockInput" class="mb-1">Stok</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="stock" value="{{values.stock}}" id="stockField" placeholder="Stok Barang" required>
+                        <div class="form-text">Masukan Stok Produk <span style="color: red;">(Wajib diisi)</span></div>
                     </div>
                 </div>
 
