@@ -33,15 +33,49 @@
             <tbody>
                 {% if pembukuans.count %}
                     {% for pembukuan in page_obj %}
-                    <tr class="align-middle">
-                        <td>{{pembukuan.date}}</td>
-                        <td>{{pembukuan.category}}</td>
-                        <td>{{pembukuan.description}}</td>
-                        <td id="price">{{pembukuan.price}}</td>
-                        <td id="tax">{{pembukuan.tax}}</td>
-                        <td id="subtotal">{{pembukuan.subtotal}}</td>
-                        <td><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
-                    </tr>
+                        {% if pembukuan.category == 'Pengeluaran' %}
+                        <tr class="align-middle">
+                            <td class="table-danger">{{pembukuan.date}}</td>
+                            <td class="table-danger">{{pembukuan.category}}</td>
+                            <td class="table-danger">{{pembukuan.description}}</td>
+                            <td class="table-danger">Rp. {{pembukuan.price}}0</td>
+                            {% if pembukuan.tax == 0 %}
+                                <td class="table-danger">-</td>
+                            {% else %}
+                                <td class="table-danger">Rp. {{pembukuan.tax}}0</td>
+                            {% endif %}
+                            <td class="table-danger">Rp. {{pembukuan.subtotal}}0</td>
+                            <td class="table-danger"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
+                        </tr>
+                        {% elif pembukuan.category == 'Lain-lain' %}
+                        <tr class="align-middle">
+                            <td class="table-info">{{pembukuan.date}}</td>
+                            <td class="table-info">{{pembukuan.category}}</td>
+                            <td class="table-info">{{pembukuan.description}}</td>
+                            <td class="table-info">Rp. {{pembukuan.price}}0</td>
+                            {% if pembukuan.tax == 0 %}
+                                <td class="table-info">-</td>
+                            {% else %}
+                                <td class="table-info">Rp. {{pembukuan.tax}}0</td>
+                            {% endif %}
+                            <td class="table-info">Rp. {{pembukuan.subtotal}}0</td>
+                            <td class="table-info"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
+                        </tr>
+                        {% elif pembukuan.category == 'Pemasukan' %}
+                        <tr class="align-middle">
+                            <td class="table-success">{{pembukuan.date}}</td>
+                            <td class="table-success">{{pembukuan.category}}</td>
+                            <td class="table-success">{{pembukuan.description}}</td>
+                            <td class="table-success">Rp. {{pembukuan.price}}0</td>
+                            {% if pembukuan.tax == 0 %}
+                                <td class="table-success">-</td>
+                            {% else %}
+                                <td class="table-success">Rp. {{pembukuan.tax}}0</td>
+                            {% endif %}
+                            <td class="table-success">Rp. {{pembukuan.subtotal}}0</td>
+                            <td class="table-success"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
+                        </tr>
+                        {% endif %}
                     {% endfor %}
                 {% else %}
                 <tr>
@@ -73,16 +107,5 @@
         
     </div>
 </div>
-
-<!-- COBAIN GANTI FORMAT KE IDR (GABISA) -->
-<script>
-    const myObj = {
-        style: "currency",
-        currency: "IDR"
-    }
-    let num = document.getElementById("amount").innerHTML;
-    let text = num.toLocaleString("id-ID", myObj);
-    document.getElementById("amount").innerHTML = text;
-</script>
 
 {% endblock content %}

@@ -1,5 +1,6 @@
 document.getElementById("priceField").addEventListener("input", totalerPrice);
 document.getElementById("taxField").addEventListener("change", totalerTax);
+document.forms['tambah-pembukuan']['tax'].value = 0;
 
 function totalerPrice() {
     var price = document.forms['tambah-pembukuan']['price'].value;

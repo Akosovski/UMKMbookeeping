@@ -22,31 +22,34 @@
             <div class="card-body">
                 <form action="{% url 'ubah-pembukuan' pembukuans.id %}" method="POST">
                     {% csrf_token %}
-                    <label for="priceInput" class="mb-1">Harga</label>
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="price" value="{{values.price}}">
-                        <div class="form-text">Ubah Harga</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <label for="taxInput" class="mb-1">Pajak</label>
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="tax" value="{{values.tax}}">
-                        <div class="form-text">Masukan Pajak (Jika ada)</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <label for="subtotalInput" class="mb-1">Total</label>
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="subtotal" value="{{values.subtotal}}">
-                        <div class="form-text">Otomatis Terupdate</div>
-                    </div>
-                </div>
-                <div class="card-body">
                     <label for="descriptionInput" class="mb-1">Deskripsi</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="description" value="{{values.description}}">
-                        <div class="form-text">Ubah Deskripsi</div>
+                        <input type="text" class="form-control" name="description" value="{{values.description}}" id="descriptionField" placeholder="Keterangan">
+                        <div class="form-text">Ubah Deskripsi <span style="color: red;">(Wajib diisi)</span></div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <label for="priceInput" class="mb-1">Jumlah</label>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="price" value="{{values.price}}" id="priceField" placeholder="Dalam Rupiah">
+                        <div class="form-text">Ubah Jumlah <span style="color: red;">(Wajib diisi)</span></div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <label for="taxInput" class="mb-1">Pajak <span style="color: green;">(Opsional)</span></label>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="tax" value="{{values.tax}}" id="taxField" placeholder="Dalam Rupiah">
+                        <div class="form-text">Ubah Pajak <span style="color: green;">(Jika ada)</span></div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <label for="totalInput" class="mb-1">Total</label>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="subtotal" value="{{values.subtotal}}" id="subtotalField" placeholder="Jumlah + Pajak, Dalam Rupiah">
+                        <div class="form-text">Jumlah + Pajak, Otomatis Terupdate <span style="color: red;">(Wajib diisi)</span></div>
                     </div>
                 </div>
 
@@ -59,7 +62,7 @@
                                 <option name="category" value="{{ category.name }}">{{ category.name }}</option>{{ category.name }}</option>
                             {% endfor %}
                         </select>
-                        <div class="form-text">Ubah Kategori</div>
+                        <div class="form-text">Ubah Kategori <span style="color: red;">(Wajib dipilih)</span></div>
                     </div>
                 </div>
 
@@ -67,7 +70,7 @@
                     <label for="" class="mb-1">Tanggal Pembukuan</label>
                     <div class="form-group">
                         <input type="date" class="form-control" name="date">
-                        <div class="form-text">Atur Tanggal</div>
+                        <div class="form-text">Atur Tanggal <span style="color: red;">(Wajib diisi)</span></div>
                     </div>
                 </div>
                 <div class="card-body text-center mb-3">

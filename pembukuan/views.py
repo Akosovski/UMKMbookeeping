@@ -36,16 +36,12 @@ def tambah_pembukuan(request):
         subtotal = request.POST.get('subtotal')
         date = request.POST.get('date')
 
-        if not price:
-            messages.error(request, 'Jumlah perlu diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html', context)
-
         if not description:
             messages.error(request, 'Deskripsi perlu diisi.')
             return render(request, 'pembukuan/tambah_pembukuan.html', context)
-        
-        if not date:
-            messages.error(request, 'Tanggal perlu diisi.')
+            
+        if not subtotal:
+            messages.error(request, 'Total perlu diisi.')
             return render(request, 'pembukuan/tambah_pembukuan.html', context)
 
         Pembukuan.objects.create(owner=request.user, price=price, tax=tax, subtotal=subtotal, description=description, category=category, date=date)

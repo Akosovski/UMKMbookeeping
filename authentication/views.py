@@ -61,7 +61,7 @@ class RegistrationView(View):
 
                 
                 messages.success(request, 'Account Successfully Created!')
-                return render(request, 'authentication/register.html')
+                return render(request, 'authentication/login.html')
 
        return render(request, 'authentication/register.html')
 
