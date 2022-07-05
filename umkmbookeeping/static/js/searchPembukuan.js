@@ -11,7 +11,7 @@ searchField.addEventListener('keyup',(e)=>{
     const searchValue = e.target.value;
 
     if (searchValue.trim().length > 0) {
-        paginationContainer.style.display = "none";
+        paginationContainer.style.display = "block";
         tbody.innerHTML = "";
         fetch("/cari-pembukuan", {
           body: JSON.stringify({ searchText: searchValue }),
