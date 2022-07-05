@@ -12,7 +12,7 @@
         </nav>
     </div>
     <div class="col-6 col-md-3 mx-auto">
-        <a href="#" class="btn btn-md btn-outline-primary">Tambah Produk</a>
+        <a href="{% url 'tambah-produk' %}" class="btn btn-md btn-outline-primary">Tambah Produk</a>
     </div>
     <div class="form-group">
         <input class="form-control mt-3" type="text" placeholder="&#128269; Cari Produk..." id="searchField">
@@ -30,13 +30,38 @@
                         <th>Harga Beli</th>
                         <th>Harga Jual</th>
                         <th>Deskripsi</th>
-                        <th>Tanggal Masuk</th>
-                        <th>Penjual</th>
+                        <th>Stok</th>
+                        <th>Tanggal Pengadaan</th>
+                        <th>Tanggal Pembaharuan</th>
+                        <th>Vendor</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    {% if produks.count %}
+                    {% for produk in page_obj %}
+                        <tr class="align-middle">
+                            <td>{{produk.name}}</td>
+                            <td>Rp. {{produk.buyprice}}0</td>
+                            <td>Rp. {{produk.sellprice}}0</td>
+                            <td>{{produk.description}}</td>
+                            <td>{{produk.stock}}</td>
+                            <td>{{produk.dateadded}}</td>
+                            <td>{{produk.dateupdated}}</td>
+                            <td>{{produk.vendor}}</td>
+                            <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
+                        </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Pembukuan Kosong</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
+                {% endif %}
             </table>
         </div>
     </div>

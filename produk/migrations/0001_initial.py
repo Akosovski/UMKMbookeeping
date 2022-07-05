@@ -16,25 +16,25 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name='Vendor',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                ('vendor', models.CharField(max_length=255)),
+                ('vendorname', models.CharField(max_length=255)),
+                ('vendoraddress', models.CharField(max_length=255)),
             ],
-            options={
-                'verbose_name_plural': 'Categories',
-            },
         ),
         migrations.CreateModel(
-            name='Pembukuan',
+            name='Produk',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.FloatField()),
-                ('tax', models.FloatField(blank=True, null=True)),
-                ('subtotal', models.FloatField()),
-                ('date', models.DateField(default=django.utils.timezone.now)),
+                ('name', models.TextField()),
+                ('buyprice', models.FloatField()),
+                ('sellprice', models.FloatField()),
                 ('description', models.TextField()),
-                ('category', models.CharField(max_length=255)),
+                ('dateadded', models.DateField(default=django.utils.timezone.now)),
+                ('dateupdated', models.DateField(default=django.utils.timezone.now)),
+                ('vendor', models.CharField(max_length=255)),
                 ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
