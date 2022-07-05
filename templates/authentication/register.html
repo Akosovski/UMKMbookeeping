@@ -7,15 +7,15 @@
     <div class="card position-absolute top-50 start-50 translate-middle p-5 pt-4" style="min-width: 22rem; max-width: 28rem; max-height: 40rem;">
         <form action="{% url 'register' %}" method="post">
         <div class="row"> 
-                <h3 class="m-auto">REGISTER</h3>
+                <h3 class="m-auto">DAFTAR</h3>
                 {% csrf_token %}
                 <div class="overflow-hidden">{% include 'partials/_messages.html' %}</div>
                 <div class="form-group mt-4">
-                    <label class="form-label">Username</label>
+                    <label class="form-label">Nama</label>
                     <input 
                         type="text"
                         name="username" 
-                        placeholder= "Username" 
+                        placeholder= "Nama" 
                         class="form-control" 
                         id="usernameField"
                         value="{{fieldValues.username}}"
@@ -37,27 +37,27 @@
                     <p class="mt-1 text sm text-success usernameSuccessOutput"></p>
                 </div>
                 <div class="form-group mt-3">
-                    <label class="form-label">Password</label>
+                    <label class="form-label">Kata Sandi</label>
                     <input 
                         type="password" 
                         name="password" 
-                        placeholder="Password" 
+                        placeholder="Kata Sandi" 
                         class="form-control" 
                         id="passwordField"
                     />
-                    <small class="btn btn-link float-end py-2 showPasswordToggle" style="text-decoration: none;">SHOW</small>
+                    <small class="btn btn-link float-end py-2 showPasswordToggle" style="text-decoration: none;">TAMPILKAN</small>
                 </div>
                 <div class="container mt-3 mx-auto">
                     <div class="d-flex">
                         <input 
                             type="submit" 
-                            value="Register" 
+                            value="DAFTAR" 
                             class="w-100 m-auto btn btn-outline-primary btn-md"
                             style="width: auto"
                         />
                     </div>
                     <div class="d-flex">
-                        <a type="button" href="{% url 'login' %}" class="w-100 m-auto mt-2 btn btn-link btn-md" style="width: auto; text-decoration: none;">Sudah memiliki akun?</a>
+                        <a type="button" href="{% url 'login' %}" class="w-100 m-auto mt-2 btn btn-link btn-md" style="width: auto; text-decoration: none;">SUDAH MEMILIKI AKUN?</a>
                     </div>
                 </div>
             </div>

@@ -10,13 +10,13 @@ const submitBtn=document.querySelector(".submit-btn");
 
 const handleToggleInput=(e)=>{
 
-    if(showPasswordToggle.textContent==="SHOW"){
-        showPasswordToggle.textContent = "HIDE";
+    if(showPasswordToggle.textContent==="TAMPILKAN"){
+        showPasswordToggle.textContent = "TUTUP";
 
         passwordField.setAttribute("type", "text");
 
     }else{
-        showPasswordToggle.textContent = "SHOW";
+        showPasswordToggle.textContent = "TAMPILKAN";
 
         passwordField.setAttribute("type", "password");
     }
@@ -32,7 +32,7 @@ emailField.addEventListener("keyup",(e) => {
     
     emailSuccessOutput.style.display="block";
 
-    emailSuccessOutput.textContent=`Checking ${emailVal}`
+    emailSuccessOutput.textContent=`Memeriksa ${emailVal}`
 
 
     emailField.classList.remove('is-invalid');
@@ -70,7 +70,7 @@ usernameField.addEventListener("keyup",(e) => {
 
     usernameSuccessOutput.style.display="block";
 
-    usernameSuccessOutput.textContent=`Checking ${usernameVal}`
+    usernameSuccessOutput.textContent=`Memeriksa ${usernameVal}`
 
     usernameField.classList.remove('is-invalid');
     feedbackArea.style.display='none';

@@ -14,9 +14,9 @@ class EmailValidationView(View):
         data = json.loads(request.body)
         email = data['email']
         if not validate_email(email):
-            return JsonResponse({'email_error':'Email is invalid!'},status=400)
+            return JsonResponse({'email_error':'Email salah!'},status=400)
         if User.objects.filter(email=email).exists():
-            return JsonResponse({'email_error':'Email is already used!'},status=409)
+            return JsonResponse({'email_error':'Email sudah digunakan!'},status=409)
         return JsonResponse({'email_valid':True})
 
 
@@ -25,9 +25,9 @@ class UsernameValidationView(View):
         data = json.loads(request.body)
         username = data['username']
         if not str(username).isalnum():
-            return JsonResponse({'username_error':'Username should not contain symbols!'},status=400)
+            return JsonResponse({'username_error':'Nama tidak boleh ada simbol!'},status=400)
         if User.objects.filter(username=username).exists():
-            return JsonResponse({'username_error':'Username already exist!'},status=409)
+            return JsonResponse({'username_error':'Nama sudah ada!'},status=409)
         return JsonResponse({'username_valid':True})
 
 class RegistrationView(View):
@@ -51,7 +51,7 @@ class RegistrationView(View):
        if not User.objects.filter(username=username).exists():
             if not User.objects.filter(email=email).exists():
                 if len(password)<6:
-                    messages.error(request, 'Password too short')
+                    messages.error(request, 'Kata Sandi terlalu pendek!')
                     return render(request, 'authentication/register.html', context)
 
                 user = User.objects.create_user(username=username,email=email,)
@@ -60,7 +60,7 @@ class RegistrationView(View):
                 
 
                 
-                messages.success(request, 'Account Successfully Created!')
+                messages.success(request, 'Akun Berhasil Dibuat!')
                 return render(request, 'authentication/login.html')
 
        return render(request, 'authentication/register.html')
@@ -80,19 +80,19 @@ class LoginView(View):
             if user:
                 if user.is_active:
                     auth.login(request, user)
-                    messages.success(request, 'Welcome, ' +user.username+' your are now logged in')
+                    messages.success(request, 'Halo ' +user.username+', Anda sudah masuk ke UMKMBOOKEEPING.')
                     return redirect('pembukuan')
-                messages.error(request, 'Account is not Active!')
+                messages.error(request, 'Akun tidak aktif.')
                 return render(request, 'authentication/login.html')
-            messages.error(request, 'Invalid Credentials, try again')
+            messages.error(request, 'Kredensial tidak valid.')
             return render(request, 'authentication/login.html')
 
-        messages.error(request, 'Please fill all fields')
+        messages.error(request, 'Mohon isi seluruh form.')
         return render(request, 'authentication/login.html')
 
 
 class LogoutView(View):
     def post(self, request):
         auth.logout(request)
-        messages.success(request, 'You have been logged out')
+        messages.success(request, 'Anda berhasil keluar.')
         return redirect('login')
