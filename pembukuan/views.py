@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 import json
 from django.http import JsonResponse
+import datetime
 
 def cari_pembukuan(request):
     if request.method == 'POST':
@@ -134,3 +135,29 @@ def hapus_pembukuan(request, id):
 
     messages.success(request, 'Pembukuan Berhasil Terhapus.')
     return redirect('pembukuan')
+
+def pembukuan_chart(request):
+    todays_date=datetime.date.today()
+    six_months_ago=todays_date-datetime.timedelta(days=30*6)
+    pembukuans=Pembukuan.objects.filter(owner=request.user,
+        date__gte=six_months_ago,date__lte=todays_date)
+    finalrep = {}
+
+    def get_category(pembukuan):
+        return pembukuan.category
+
+    category_list=list(set(map(get_category, pembukuans)))
+
+    def get_pembukuan_category_price(category):
+        price = 0
+        filtered_by_category=pembukuans.filter(category=category)
+
+        for item in filtered_by_category:
+            price += item.price
+        return price
+
+    for x in pembukuans:
+        for y in category_list:
+            finalrep[y]=get_pembukuan_category_price(y)
+
+    return JsonResponse({'pembukuan_category_data': finalrep}, safe=False)
