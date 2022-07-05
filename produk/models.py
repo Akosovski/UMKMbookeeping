@@ -21,6 +21,7 @@ class Produk(models.Model):
 class Vendor(models.Model):
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
+    # company = models.CharField(max_length=255)
 
     class Meta:
         verbose_name_plural = 'Vendors'
