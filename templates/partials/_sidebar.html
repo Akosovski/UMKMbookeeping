@@ -9,11 +9,11 @@
       <div class="navbar-nav">
         <a class="nav-link active" href="#"><span style="color: green;">Dashboard</span></a>
         <a class="nav-link" href="{% url 'pembukuan' %}">Pembukuan</a>
-        <a class="nav-link" href="#">Product</a>
+        <a class="nav-link" href="#">Produk</a>
         <a class="nav-link" href="#">Karyawan</a>
         <form action="{% url 'logout' %}" method="POST">
           {% csrf_token %}
-          <input class="nav-link btn btn-link fw-bold" type="submit" value="Sign out" style="margin-top: -1px; color: red;">
+          <input class="nav-link btn btn-link fw-bold" type="submit" value="KELUAR" style="margin-top: -1px; color: red;">
         </form>
         
       </div>
