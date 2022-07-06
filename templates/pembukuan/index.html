@@ -32,6 +32,7 @@
                         <th>Harga</th>
                         <th>Pajak</th>
                         <th>Total</th>
+                        <th>Pengguna</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,13 +43,14 @@
                                 <td class="table-danger">{{pembukuan.date}}</td>
                                 <td class="table-danger">{{pembukuan.category}}</td>
                                 <td class="table-danger">{{pembukuan.description}}</td>
-                                <td class="table-danger">Rp. {{pembukuan.price}}0</td>
+                                <td class="table-danger" target="_blank">{{pembukuan.price}}</td>
                                 {% if pembukuan.tax == 0 %}
                                     <td class="table-danger">-</td>
                                 {% else %}
-                                    <td class="table-danger">Rp. {{pembukuan.tax}}0</td>
+                                    <td class="table-danger" target="_blank">{{pembukuan.tax}}</td>
                                 {% endif %}
-                                <td class="table-danger">Rp. {{pembukuan.subtotal}}0</td>
+                                <td class="table-danger" target="_blank">{{pembukuan.subtotal}}</td>
+                                <td class="table-danger">{{pembukuan.owner}}</td>
                                 <td class="table-danger"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                             </tr>
                             {% elif pembukuan.category == 'Lain-lain' %}
@@ -56,13 +58,14 @@
                                 <td class="table-info">{{pembukuan.date}}</td>
                                 <td class="table-info">{{pembukuan.category}}</td>
                                 <td class="table-info">{{pembukuan.description}}</td>
-                                <td class="table-info">Rp. {{pembukuan.price}}0</td>
+                                <td class="table-info" target="_blank">{{pembukuan.price}}</td>
                                 {% if pembukuan.tax == 0 %}
                                     <td class="table-info">-</td>
                                 {% else %}
-                                    <td class="table-info">Rp. {{pembukuan.tax}}0</td>
+                                    <td class="table-info" target="_blank">{{pembukuan.tax}}</td>
                                 {% endif %}
-                                <td class="table-info">Rp. {{pembukuan.subtotal}}0</td>
+                                <td class="table-info" target="_blank">{{pembukuan.subtotal}}</td>
+                                <td class="table-info">{{pembukuan.owner}}</td>
                                 <td class="table-info"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                             </tr>
                             {% elif pembukuan.category == 'Pemasukan' %}
@@ -70,13 +73,14 @@
                                 <td class="table-success">{{pembukuan.date}}</td>
                                 <td class="table-success">{{pembukuan.category}}</td>
                                 <td class="table-success">{{pembukuan.description}}</td>
-                                <td class="table-success">Rp. {{pembukuan.price}}0</td>
+                                <td class="table-success" target="_blank">{{pembukuan.price}}</td>
                                 {% if pembukuan.tax == 0 %}
                                     <td class="table-success">-</td>
                                 {% else %}
-                                    <td class="table-success">Rp. {{pembukuan.tax}}0</td>
+                                    <td class="table-success" target="_blank">{{pembukuan.tax}}</td>
                                 {% endif %}
-                                <td class="table-success">Rp. {{pembukuan.subtotal}}0</td>
+                                <td class="table-success" target="_blank">{{pembukuan.subtotal}}</td>
+                                <td class="table-success">{{pembukuan.owner}}</td>
                                 <td class="table-success"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                             </tr>
                             {% endif %}
@@ -135,9 +139,25 @@
         </div>
     </div>
 </div>
-
-<div class="row g-0 m-2">
-    <canvas id="myChart" width="400" height="400"></canvas>
+<hr>
+<div class="d-flex m-1 mb-4 flex-md-row flex-column">
+    <div class="container w-100 w-md-75 mt-2 mb-3" style="max-width: 600px">
+        <div class="card p-2">
+            <h5 class="mt-2 mb-3 text-center">NILAI TOTAL PEMBUKUAN BERDASARKAN KATEGORI</h5>
+            <canvas id="myChart" width="200" height="200" class="overflow-auto"></canvas>
+            <p class="text-center mt-4 fs-5">Mohon untuk memuat kembali laman ini apabila grafik tidak muncul.</p>
+        </div>
+    </div>
+    <div class="container-fluid d-flex w-150 w-md-25 h-auto mt-2 mb-3 justify-content-center flex-column">
+        <div class="card p-4 w-100 h-50">
+            <h4 class="text-center mb-3 mt-md-5">MENGUBAH FORMAT PEMBUKUAN</h4>
+            <a href="#" class="btn btn-primary m-2">Ubah Pembukuan menjadi bentuk PDF</a>
+            <a href="#" class="btn btn-primary m-2">Ubah Pembukuan menjadi bentuk Excel</a>
+        </div>
+        <div class="card p-4 w-100 h-50 mt-4">
+            <h1 class="text-center">INI KOSONG</h1>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

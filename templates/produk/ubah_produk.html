@@ -2,18 +2,25 @@
 
 {% block content %}
 <br>
-<div class="row">
-    <div class="container m-1 mb-0">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Ubah Produk</p></li>
-            </ol>
-        </nav>
+<div class="row m-1">
+    <div class="container m-0">
+        <div class="row g-0">
+            <div class="col-9 col-md-11 p-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Ubah Detail Produk</p></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-3 col-md-1 mx-auto">
+                <a href="{% url 'hapus-produk' produks.id %}" class="btn btn-md btn-outline-danger">Hapus</a>
+            </div>
+        </div>
     </div>
     <div class="container m-1 mt-0 mb-4">
         <div class="card">
             <div class="card-body">
-            <form name="tambah-produk" action="{% url 'tambah-produk' %}" method="POST">
+            <form name="ubah-produk" action="{% url 'ubah-produk' produks.id %}" method="POST">
                 {% csrf_token %}
                     <label for="nameInput" class="mb-1">Nama</label>
                     <div class="form-group">
@@ -68,13 +75,12 @@
                     <div class="form-group">
                         <select name="vendor" class="form-select" aria-label="Default select example">
                             {% for vendor in vendors %}
-                                <option name="vendor" value="{{ vendor.vendorname }}">{{ vendor.name }}</option>{{ vendor.name }}</option>
+                                <option name="vendor" value="{{vendor.name}}">{{vendor.name}}</option>{{vendor.name}}</option>
                             {% endfor %}
                         </select>
                         <div class="form-text">Pilih Vendor <span style="color: red;">(Wajib dipilih)</span></div>
                     </div>
                 </div>
-
                 <div class="card-body text-center mb-3">
                     <input type="submit" value="Ubah Produk" class="btn btn-primary">
                 </div> 

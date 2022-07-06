@@ -1,3 +1,14 @@
+let rupiahIDR = Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+});
+
+const nodeList = document.querySelectorAll("td[target]");
+for (let i = 0; i < nodeList.length; i++) {
+    var price = nodeList[i].innerHTML;
+    nodeList[i].innerHTML = rupiahIDR.format(price);
+}
+
 const renderChart=(data,labels)=>{
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -25,12 +36,6 @@ const renderChart=(data,labels)=>{
                 ],
                 borderWidth: 1
             }]
-        },
-        options: {
-            title:{
-                display:true,
-                text:'Pembukuan Berdasarkan Kategori',
-            }
         }
     });
 
@@ -47,12 +52,9 @@ const getChartData=()=>{
             Object.keys(category_data),
             Object.values(category_data),
         ];
-        
-
         renderChart(data, labels);
     });
 }
-
 document.onload=getChartData();
 
 

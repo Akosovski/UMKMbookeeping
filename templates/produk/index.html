@@ -13,16 +13,17 @@
     </div>
     <div class="col-6 col-md-3 mx-auto">
         <a href="{% url 'tambah-produk' %}" class="btn btn-md btn-outline-primary">Tambah Produk</a>
+        <a href="#" class="btn btn-md btn-outline-primary">Jual Produk</a>
     </div>
     <div class="form-group">
-        <input class="form-control mt-3" type="text" placeholder="&#128269; Cari Produk..." id="searchField">
+        <input class="form-control mt-3" type="text" placeholder="&#128269; Cari Produk..." id="searchField-produk">
     </div>
 </div>
 
 <div class="row mt-2 overflow-auto mh-100">
     <br>
     <div class="container mt-2">
-        <div class="app-table">
+        <div class="app-table-produk">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -38,19 +39,19 @@
                 </thead>
                 <tbody>
                     {% if produks.count %}
-                    {% for produk in page_obj %}
-                        <tr class="align-middle">
-                            <td>{{produk.name}}</td>
-                            <td>Rp. {{produk.buyprice}}0</td>
-                            <td>Rp. {{produk.sellprice}}0</td>
-                            <td>{{produk.description}}</td>
-                            <td>{{produk.stock}}</td>
-                            <td>{{produk.dateadded}}</td>
-                            <td>{{produk.dateupdated}}</td>
-                            <td>{{produk.vendor}}</td>
-                            <td><a href="{% url 'ubah-produk' produk.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
-                        </tr>
-                    {% endfor %}
+                        {% for produk in page_obj %}
+                            <tr class="align-middle">
+                                <td>{{produk.name}}</td>
+                                <td target="_blank">{{produk.buyprice}}</td>
+                                <td target="_blank">{{produk.sellprice}}</td>
+                                <td>{{produk.description}}</td>
+                                <td>{{produk.stock}}</td>
+                                <td>{{produk.dateadded}}</td>
+                                <td>{{produk.dateupdated}}</td>
+                                <td>{{produk.vendor}}</td>
+                                <td><a href="{% url 'ubah-produk' produk.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
+                            </tr>
+                        {% endfor %}
                     {% else %}
                     <tr>
                         <td></td>
@@ -63,6 +64,47 @@
                 </tbody>
                 {% endif %}
             </table>
+        </div>
+
+        <p class="no-results-produk" style="display: none; text-align: center;"><br>Tidak ada hasil carian.</p>
+
+        <div class="table-output-produk">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nama Produk</th>
+                        <th>Harga Beli</th>
+                        <th>Harga Jual</th>
+                        <th>Deskripsi</th>
+                        <th>Stok</th>
+                        <th>Tanggal Pengadaan</th>
+                        <th>Tanggal Pembaharuan</th>
+                        <th>Vendor</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body-produk">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container d-flex justify-content-end" id="pagination-container-produk">
+            <div class="mt-2 m-5">
+                Halaman {{page_obj.number}} dari {{ page_obj.paginator.num_pages }}
+            </div>
+            <div class="">     
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a></li>
+                    <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Kembali</a></li>
+                    {% endif %}
+              
+                    {% if page_obj.has_next %}
+                    <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Berikutnya</a></li>
+                    <li class="page-item"> <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+                    {% endif %}
+                </ul>           
+            </div>
         </div>
     </div>
 </div>

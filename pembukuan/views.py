@@ -91,30 +91,29 @@ def ubah_pembukuan(request, id):
         price = request.POST.get('price')
         tax = request.POST.get('tax')
         subtotal = request.POST.get('subtotal')
-
         description = request.POST.get('description')
         category = request.POST.get('category')
         date = request.POST.get('date')
 
         if not description:
             messages.error(request, 'Deskripsi perlu diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html', context)
+            return render(request, 'pembukuan/ubah_pembukuan.html', context)
 
         if not price:
             messages.error(request, 'Jumlah perlu diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html', context)
+            return render(request, 'pembukuan/ubah_pembukuan.html', context)
 
         if not tax:
             messages.error(request, 'Pajak dinolkan apabila tidak diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html', context)
+            return render(request, 'pembukuan/ubah_pembukuan.html', context)
 
         if not subtotal:
             messages.error(request, 'Total perlu diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html', context)
+            return render(request, 'pembukuan/ubah_pembukuan.html', context)
 
         if not date:
             messages.error(request, 'Tanggal perlu diisi.')
-            return render(request, 'pembukuan/tambah_pembukuan.html', context)
+            return render(request, 'pembukuan/ubah_pembukuan.html', context)
         
         pembukuans.owner = request.user
         pembukuans.price = price

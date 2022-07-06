@@ -9,6 +9,18 @@ import json
 from django.http import JsonResponse
 
 # Create your views here.
+def cari_produk(request):
+    if request.method == 'POST':
+        search_str = json.loads(request.body).get('searchText')
+        produks = Produk.objects.filter(
+            sellprice__istartswith=search_str, owner=request.user) | Produk.objects.filter(
+            dateadded__istartswith=search_str, owner=request.user) | Produk.objects.filter(
+            name__icontains=search_str, owner=request.user) | Produk.objects.filter(
+            vendor__icontains=search_str, owner=request.user) | Produk.objects.filter(
+            stock__istartswith=search_str, owner=request.user) 
+        data = produks.values()
+        return JsonResponse(list(data), safe=False)
+
 @login_required(login_url = '/authentication/login')
 def index(request):
     vendors = Vendor.objects.all()
@@ -78,7 +90,7 @@ def ubah_produk(request, id):
     context = {
         'produks': produks,
         'values': produks,
-        'vendors': vendors,
+        'vendors': vendors
     }
     if request.method == 'GET':
         return render(request, 'produk/ubah_produk.html', context)
@@ -111,12 +123,13 @@ def ubah_produk(request, id):
         if not stock:
             messages.error(request, 'Stok perlu diisi.')
             return render(request, 'produk/ubah_produk.html', context)
-
+        
         if not dateupdated:
             messages.error(request, 'Tanggal Perubahan perlu diisi.')
             return render(request, 'produk/ubah_produk.html', context)
         
         produks.owner = request.user
+        produks.name = name
         produks.buyprice = buyprice
         produks.sellprice = sellprice
         produks.description = description
@@ -128,3 +141,10 @@ def ubah_produk(request, id):
         messages.success(request, 'Perubahan Produk Sukses.')
 
         return redirect('produk')
+
+def hapus_produk(request, id):
+    produk = Produk.objects.get(pk=id)
+    produk.delete()
+
+    messages.success(request, 'Produk Berhasil Terhapus.')
+    return redirect('produk')

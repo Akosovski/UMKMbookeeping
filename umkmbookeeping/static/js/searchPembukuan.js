@@ -1,11 +1,15 @@
 const searchField = document.querySelector("#searchField");
-
 const tableOutput = document.querySelector(".table-output");
 const appTable = document.querySelector(".app-table");
 const paginationContainer = document.querySelector("#pagination-container");
 tableOutput.style.display = "none";
 const noResults = document.querySelector(".no-results");
 const tbody = document.querySelector(".table-body");
+
+let rupiahIDR_loop = Intl.NumberFormat("id-ID", {
+  style: "currency",
+  currency: "IDR",
+});
 
 searchField.addEventListener('keyup',(e)=>{
     const searchValue = e.target.value;
@@ -31,14 +35,17 @@ searchField.addEventListener('keyup',(e)=>{
             } else {
               noResults.style.display = "none";
               data.forEach((item) => {
+                var price_loop = rupiahIDR_loop.format(item.price);
+                var tax_loop = rupiahIDR_loop.format(item.tax);
+                var subtotal_loop = rupiahIDR_loop.format(item.subtotal);
                 tbody.innerHTML += `
                     <tr class="align-middle">
                         <td>${item.date}</td>
                         <td>${item.category}</td>
                         <td>${item.description}</td>
-                        <td>Rp. ${item.price}0</td>
-                        <td>Rp. ${item.tax}0</td>
-                        <td>Rp. ${item.subtotal}0</td>
+                        <td target="_blank">${price_loop}</td>
+                        <td target="_blank">${tax_loop}</td>
+                        <td target="_blank">${subtotal_loop}</td>
                     </tr>`;
               });
             }

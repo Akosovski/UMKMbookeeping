@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <select name="vendor" class="form-select" aria-label="Default select example">
                             {% for vendor in vendors %}
-                                <option name="vendor" value="{{ vendor.vendorname }}">{{ vendor.name }}</option>{{ vendor.name }}</option>
+                                <option name="vendor" value="{{vendor.name}}">{{vendor.name}}</option>{{vendor.name}}</option>
                             {% endfor %}
                         </select>
                         <div class="form-text">Pilih Vendor <span style="color: red;">(Wajib dipilih)</span></div>
