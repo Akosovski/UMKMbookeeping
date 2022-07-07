@@ -8,5 +8,6 @@ urlpatterns = [
     path('ubah-pembukuan/<int:id>', views.ubah_pembukuan, name="ubah-pembukuan"),
     path('hapus-pembukuan/<int:id>', views.hapus_pembukuan, name="hapus-pembukuan"),
     path('cari-pembukuan', csrf_exempt(views.cari_pembukuan), name="cari-pembukuan"),
-    path('pembukuan-chart',views.pembukuan_chart, name="pembukuan-chart")
+    path('pembukuan-chart',views.pembukuan_chart, name="pembukuan-chart"),
+    path('jual-produk',views.jual_produk, name="jual-produk"),
 ]

@@ -7,16 +7,16 @@
     <div class="col-6 col-md-9 p-0">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Karyawan</p></li>
+                <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-3">Karyawan</p></li>
             </ol>
         </nav>
     </div>
     <div class="col-6 col-md-3 mx-auto">
-        <a href="{% url 'tambah-karyawan' %}" class="btn btn-md btn-outline-primary">Tambah Karyawan</a>
+        <a href="{% url 'tambah-karyawan' %}" class="btn btn-md btn-outline-primary w-100" style="max-width: 250px;">Tambah Karyawan</a>
     </div>
 </div>
-
-<div class="row mt-2 overflow-auto mh-100">
+<hr>
+<div class="row mt-1 overflow-auto mh-100">
     <br>
     <div class="container mt-2">
         <table class="table table-striped">
@@ -37,7 +37,7 @@
                     </tr>
                     {% else %}
                     <tr class="align-middle">
-                        <td class="table-success">{{forloop.counter}}.</td>
+                        <td class="table-info">{{forloop.counter}}.</td>
                         <td class="table-info">{{user.username}}</td>
                         <td class="table-info">{{user.email}}</td>
                     </tr>
@@ -45,6 +45,12 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+</div>
+<hr>
+<div class="d-flex m-1 mt-2 mb-3 flex-md-row flex-column">
+    <div class="card">
+        
     </div>
 </div>
 {% endblock content %}

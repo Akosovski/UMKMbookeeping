@@ -57,7 +57,7 @@ class RegistrationView(View):
                 user.save()
                                 
                 messages.success(request, 'Akun Berhasil Dibuat!')
-                return render(request, 'authentication/login.html')
+                return render(request, 'authentication/register.html')
 
        return render(request, 'authentication/register.html')
 

@@ -6,14 +6,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" href="#"><span style="color: green;">Dashboard</span></a>
-        <a class="nav-link" href="{% url 'pembukuan' %}">Pembukuan</a>
-        <a class="nav-link" href="{% url 'produk' %}">Produk</a>
-        <a class="nav-link" href="{% url 'karyawan' %}">Karyawan</a>
+      <div class="navbar-nav" style="margin-bottom: -15px;"> 
+        <a class="nav-link" href="{% url 'pembukuan' %}"><span class="fs-5" style="color: green;">Pembukuan</span></a>
+        <a class="nav-link" href="{% url 'produk' %}"><span class="fs-5">Produk</span></a>
+        <a class="nav-link" href="{% url 'karyawan' %}"><span class="fs-5"> Karyawan</span></a>
         <form action="{% url 'logout' %}" method="POST">
           {% csrf_token %}
-          <input class="nav-link btn btn-link fw-bold" type="submit" value="KELUAR" style="margin-top: -1px; color: red;">
+          <input class="nav-link btn btn-link fw-bold fs-5" type="submit" value="KELUAR" style="color: red;">
         </form>
         
       </div>

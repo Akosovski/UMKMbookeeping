@@ -160,3 +160,8 @@ def pembukuan_chart(request):
             finalrep[y]=get_pembukuan_category_price(y)
 
     return JsonResponse({'pembukuan_category_data': finalrep}, safe=False)
+
+@login_required(login_url = '/authentication/login')
+def jual_produk(request):
+
+    return render(request, 'pembukuan/jual_produk.html')
