@@ -93,6 +93,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
                 {% endif %}
@@ -141,21 +142,44 @@
 </div>
 <hr>
 <div class="d-flex m-1 mb-4 flex-md-row flex-column">
-    <div class="container w-100 w-md-75 mt-2 mb-3" style="max-width: 600px">
+    <div class="container w-100 w-md-75 mt-2 mb-1" style="max-width: 600px">
         <div class="card p-2">
-            <h5 class="mt-2 mb-3 text-center">NILAI TOTAL PEMBUKUAN BERDASARKAN KATEGORI</h5>
+            <h4 class="mt-2 mb-3 text-center">NILAI TOTAL PEMBUKUAN BERDASARKAN KATEGORI</h4>
             <canvas id="myChart" width="200" height="200" class="overflow-auto"></canvas>
-            <p class="text-center mt-4 fs-5">Mohon untuk memuat kembali laman ini apabila grafik tidak muncul.</p>
+            <p class="text-center m-2 mt-4 fs-5">Mohon untuk memuat ulang laman ini apabila grafik tidak muncul atau data yang ditampilkan tidak sesuai.</p>
         </div>
     </div>
-    <div class="container-fluid d-flex w-150 w-md-25 h-auto mt-2 mb-3 justify-content-center flex-column">
+    <div class="container-fluid d-flex w-150 w-md-25 h-auto mt-2 mb-1 justify-content-center flex-column">
         <div class="card p-4 w-100 h-50">
-            <h4 class="text-center mb-3 mt-md-5">MENGUBAH FORMAT PEMBUKUAN</h4>
+            <h2 class="text-center mb-3">MENGUBAH FORMAT PEMBUKUAN</h2>
             <a href="#" class="btn btn-primary m-2">Ubah Pembukuan menjadi bentuk PDF</a>
-            <a href="#" class="btn btn-primary m-2">Ubah Pembukuan menjadi bentuk Excel</a>
+            <a href="#" class="btn btn-success m-2">Ubah Pembukuan menjadi bentuk Excel</a>
         </div>
-        <div class="card p-4 w-100 h-50 mt-4">
-            <h1 class="text-center">INI KOSONG</h1>
+        <div class="w-100 h-50 p-1">
+            <div class="row d-flex justify-content-between">
+                <div class="col card m-2 p-4" style="min-width: 230px; min-height: 220px;">
+                    <h4 class="text-center mt-5 text-danger">TOTAL PENGELUARAN</h4>
+                    <h5 class="text-center mt-2">RP 200,000.00</h5>
+                </div>
+                <div class="col card m-2 p-4" style="min-width: 230px; min-height: 220px;">
+                    <h4 class="text-center mt-5 text-success">TOTAL PEMASUKAN</h4>
+                    <h5 class="text-center mt-2">RP 200,000.00</h5>
+                </div>
+                <div class="col card m-2 p-4" style="min-width: 230px; min-height: 220px;">
+                    <h4 class="text-center mt-5 text-info">TOTAL LAIN-LAIN</h4>
+                    <h5 class="text-center mt-2">RP 200,000.00</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card p-4 w-100 h-50 mt-1">
+            <h2 class="text-center mt-1">PANDUAN PENGGUNAAN</h2>
+            <p class="mt-1 text-center mb-0 fs-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, 
+                eaque ipsa quae ab.</p>
         </div>
     </div>
 </div>

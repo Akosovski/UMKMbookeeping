@@ -19,7 +19,6 @@ class EmailValidationView(View):
             return JsonResponse({'email_error':'Email sudah digunakan!'},status=409)
         return JsonResponse({'email_valid':True})
 
-
 class UsernameValidationView(View):
     def post(self, request):
         data = json.loads(request.body)
@@ -33,7 +32,6 @@ class UsernameValidationView(View):
 class RegistrationView(View):
     def get(self, request):
         return render(request, 'authentication/register.html')
-
 
     def post(self, request):
        #GET USER DATA
@@ -57,9 +55,7 @@ class RegistrationView(View):
                 user = User.objects.create_user(username=username,email=email,)
                 user.set_password(password)
                 user.save()
-                
-
-                
+                                
                 messages.success(request, 'Akun Berhasil Dibuat!')
                 return render(request, 'authentication/login.html')
 
@@ -89,7 +85,6 @@ class LoginView(View):
 
         messages.error(request, 'Mohon isi seluruh form.')
         return render(request, 'authentication/login.html')
-
 
 class LogoutView(View):
     def post(self, request):

@@ -22,30 +22,27 @@
         <table class="table table-striped">
             <thead>
                 <tr class="align-middle">
+                    <th>No</th>
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Password</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="align-middle">
-                    <td>Zaky</td>
-                    <td>Zaky@email.com</td>
-                    <td>Zaky123</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
-                </tr>
-                <tr class="align-middle">
-                    <td>Ako</td>
-                    <td>Ako@email.com</td>
-                    <td>Ako123</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
-                </tr>
-                <tr class="align-middle">
-                    <td>Adam</td>
-                    <td>Adam@email.com</td>
-                    <td>Adam123</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
-                </tr>
+                {% for user in users %}
+                    {% if user.username == "Admin" %}
+                    <tr class="align-middle">
+                        <td class="table-success">{{forloop.counter}}.</td>
+                        <td class="table-success">{{user.username}}</td>
+                        <td class="table-success">{{user.email}}</td>
+                    </tr>
+                    {% else %}
+                    <tr class="align-middle">
+                        <td class="table-success">{{forloop.counter}}.</td>
+                        <td class="table-info">{{user.username}}</td>
+                        <td class="table-info">{{user.email}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
             </tbody>
         </table>
     </div>
