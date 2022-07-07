@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<div class="row g-0 m-2">
+    <div class="col-6 col-md-9 p-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Karyawan</p></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-6 col-md-3 mx-auto">
+        <a href="{% url 'tambah-karyawan' %}" class="btn btn-md btn-outline-primary">Tambah Karyawan</a>
+    </div>
+</div>
+
+<div class="row mt-2 overflow-auto mh-100">
+    <br>
+    <div class="container mt-2">
+        <table class="table table-striped">
+            <thead>
+                <tr class="align-middle">
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="align-middle">
+                    <td>Zaky</td>
+                    <td>Zaky@email.com</td>
+                    <td>Zaky123</td>
+                    <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
+                </tr>
+                <tr class="align-middle">
+                    <td>Ako</td>
+                    <td>Ako@email.com</td>
+                    <td>Ako123</td>
+                    <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
+                </tr>
+                <tr class="align-middle">
+                    <td>Adam</td>
+                    <td>Adam@email.com</td>
+                    <td>Adam123</td>
+                    <td><a href="#" class="btn btn-primary btn-sm">Ubah</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
