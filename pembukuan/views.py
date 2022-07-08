@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from multiprocessing import context
 from .models import Category, Pembukuan
+from produk.models import Produk
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -49,6 +50,7 @@ def tambah_pembukuan(request):
         tax = request.POST.get('tax')
         subtotal = request.POST.get('subtotal')
         date = request.POST.get('date')
+        profit=0
 
         if not description:
             messages.error(request, 'Deskripsi perlu diisi.')
@@ -70,7 +72,7 @@ def tambah_pembukuan(request):
             messages.error(request, 'Tanggal perlu diisi.')
             return render(request, 'pembukuan/tambah_pembukuan.html', context)
 
-        Pembukuan.objects.create(owner=request.user, price=price, tax=tax, subtotal=subtotal, description=description, category=category, date=date)
+        Pembukuan.objects.create(owner=request.user, price=price, tax=tax, subtotal=subtotal, description=description, category=category, date=date, profit=profit)
         messages.success(request, 'Penambahan Pembukuan Sukses.')
 
         return redirect('pembukuan')
@@ -163,5 +165,43 @@ def pembukuan_chart(request):
 
 @login_required(login_url = '/authentication/login')
 def jual_produk(request):
+    produks = Produk.objects.all()
+    context = {
+        'produks': produks
+    }
+    if request.method == 'GET':
+        return render(request, 'pembukuan/jual_produk.html', context)
 
-    return render(request, 'pembukuan/jual_produk.html')
+    if request.method == 'POST':
+        name = request.POST.get('produk')
+        siproduk_sellprice = Produk.objects.get(name=name)
+        price = siproduk_sellprice.sellprice
+
+        category = 'Pemasukan'
+        description = 'Penjualan '+name
+        
+        stock = request.POST.get('stock')
+        subtotal = price * int(stock)
+        siproduk_stock = Produk.objects.get(name=name)
+        intstock = siproduk_stock.stock
+        stock_akhir = intstock - int(stock)
+
+        if not description:
+            messages.error(request, 'Deskripsi perlu diisi.')
+            return render(request, 'pembukuan/jual_produk.html', context)
+
+        if not stock:
+            messages.error(request, 'Stock perlu diisi.')
+            return render(request, 'pembukuan/jual_produk.html', context)
+
+        if not subtotal:
+            messages.error(request, 'Total perlu diisi.')
+            return render(request, 'pembukuan/jual_produk.html', context)
+
+        savedproduks = Produk.objects.get(name__iexact=name)
+        savedproduks.stock = stock_akhir
+        savedproduks.save()
+        Pembukuan.objects.create(owner=request.user, price=price, tax=0, subtotal=subtotal, description=description, category=category, date=datetime.date.today() )
+        messages.success(request, 'Penjualan Produk Sukses. Stok telah diperbaharui.')
+
+        return redirect('pembukuan')

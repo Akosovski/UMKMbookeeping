@@ -41,8 +41,12 @@ const renderChart=(data,labels)=>{
 
 };
 
+const totalPengeluaran = document.getElementById('total-pengeluaran');
+const totalPemasukan = document.getElementById('total-pemasukan');
+const totalLain = document.getElementById('total-lain');
+
 const getChartData=()=>{
-    console.log("fetching");
+    console.log("fetching chart");
     fetch("/pembukuan-chart")
     .then(res=>res.json())
     .then(results=>{
@@ -57,5 +61,6 @@ const getChartData=()=>{
 }
 document.onload=getChartData();
 
-
-
+// totalLain.innerHTML = values(category_data),
+// totalPemasukan.innerHTML = values(category_data),
+// totalPengeluaran.innerHTML = values(category_data),

@@ -33,6 +33,7 @@
                         <th>Harga</th>
                         <th>Pajak</th>
                         <th>Total</th>
+                        <th>Keuntungan</th>
                         <th>Pengguna</th>
                     </tr>
                 </thead>
@@ -51,6 +52,7 @@
                                     <td class="table-danger" target="_blank">{{pembukuan.tax}}</td>
                                 {% endif %}
                                 <td class="table-danger" target="_blank">{{pembukuan.subtotal}}</td>
+                                <td class="table-danger">-</td>
                                 <td class="table-danger">{{pembukuan.owner}}</td>
                                 <td class="table-danger"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                             </tr>
@@ -66,6 +68,7 @@
                                     <td class="table-info" target="_blank">{{pembukuan.tax}}</td>
                                 {% endif %}
                                 <td class="table-info" target="_blank">{{pembukuan.subtotal}}</td>
+                                <td class="table-info">-</td>
                                 <td class="table-info">{{pembukuan.owner}}</td>
                                 <td class="table-info"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                             </tr>
@@ -81,6 +84,11 @@
                                     <td class="table-success" target="_blank">{{pembukuan.tax}}</td>
                                 {% endif %}
                                 <td class="table-success" target="_blank">{{pembukuan.subtotal}}</td>
+                                {% if pembukuan.profit == null %}
+                                    <td class="table-success">-</td>
+                                {% else %}
+                                    <td class="table-success" target="_blank">{{pembukuan.profit}</td>
+                                {% endif %}
                                 <td class="table-success">{{pembukuan.owner}}</td>
                                 <td class="table-success"><a href="{% url 'ubah-pembukuan' pembukuan.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
                             </tr>
@@ -147,7 +155,7 @@
         <div class="card p-2">
             <h4 class="mt-2 mb-3 text-center">NILAI TOTAL PEMBUKUAN BERDASARKAN KATEGORI</h4>
             <canvas id="myChart" width="200" height="200" class="overflow-auto"></canvas>
-            <p class="text-center m-2 mt-4 fs-5">Mohon untuk memuat ulang laman ini apabila grafik tidak muncul atau data yang ditampilkan tidak sesuai.</p>
+            <p class="text-center m-2 mt-4 fs-5">Mohon untuk memuat ulang (Refresh) laman ini apabila grafik tidak muncul atau data yang ditampilkan tidak sesuai.</p>
         </div>
     </div>
     <div class="container-fluid d-flex w-150 w-md-25 h-auto mt-2 mb-1 justify-content-center flex-column">
@@ -160,15 +168,15 @@
             <div class="row d-flex justify-content-between">
                 <div class="col card m-2 p-4" style="min-width: 230px; min-height: 220px;">
                     <h4 class="text-center mt-5 text-danger">TOTAL PENGELUARAN</h4>
-                    <h5 class="text-center mt-2">RP 200,000.00</h5>
+                    <h5 class="text-center mt-2" id="total-pengeluaran" target="_blank">NULL</h5>
                 </div>
                 <div class="col card m-2 p-4" style="min-width: 230px; min-height: 220px;">
                     <h4 class="text-center mt-5 text-success">TOTAL PEMASUKAN</h4>
-                    <h5 class="text-center mt-2">RP 200,000.00</h5>
+                    <h5 class="text-center mt-2" id="total-pemasukan" target="_blank">NULL</h5>
                 </div>
                 <div class="col card m-2 p-4" style="min-width: 230px; min-height: 220px;">
                     <h4 class="text-center mt-5 text-info">TOTAL LAIN-LAIN</h4>
-                    <h5 class="text-center mt-2">RP 200,000.00</h5>
+                    <h5 class="text-center mt-2" id="total-lain" target="_blank">NULL</h5>
                 </div>
             </div>
         </div>

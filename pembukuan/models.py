@@ -12,6 +12,7 @@ class Pembukuan(models.Model):
     description = models.TextField()
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     category = models.CharField(max_length=255)
+    profit = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return self.category
