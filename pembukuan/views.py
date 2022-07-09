@@ -23,14 +23,33 @@ def cari_pembukuan(request):
 
 @login_required(login_url = '/authentication/login')
 def index(request):
-    categories = Category.objects.all()
+    category = Category.objects.all()
     pembukuans = Pembukuan.objects.all()
     paginator = Paginator(pembukuans, 5)
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)
+
+    total_pemasukan = 0
+    category_pemasukan = pembukuans.filter(category='Pemasukan')
+    for item in category_pemasukan:
+        total_pemasukan += item.subtotal
+    
+    total_pengeluaran = 0
+    category_pengeluaran = pembukuans.filter(category='Pengeluaran')
+    for item in category_pengeluaran:
+        total_pengeluaran += item.subtotal
+
+    total_lain = 0
+    category_lain = pembukuans.filter(category='Lain-lain')
+    for item in category_lain:
+        total_lain += item.subtotal
+
     context = {
         'pembukuans': pembukuans,
         'page_obj': page_obj,
+        'total_pemasukan': total_pemasukan,
+        'total_pengeluaran': total_pengeluaran,
+        'total_lain': total_lain,
     }
     return render(request, 'pembukuan/index.html', context)
 
@@ -174,13 +193,16 @@ def jual_produk(request):
 
     if request.method == 'POST':
         name = request.POST.get('produk')
+        stock = request.POST.get('stock')
         siproduk_sellprice = Produk.objects.get(name=name)
         price = siproduk_sellprice.sellprice
+        buyprice = siproduk_sellprice.buyprice
+        profit_raw = price - buyprice
+        profit = profit_raw * float(stock)
 
         category = 'Pemasukan'
-        description = 'Penjualan '+name
-        
-        stock = request.POST.get('stock')
+        description = 'Penjualan '+ stock +' Buah '+ name
+
         subtotal = price * int(stock)
         siproduk_stock = Produk.objects.get(name=name)
         intstock = siproduk_stock.stock
@@ -201,7 +223,7 @@ def jual_produk(request):
         savedproduks = Produk.objects.get(name__iexact=name)
         savedproduks.stock = stock_akhir
         savedproduks.save()
-        Pembukuan.objects.create(owner=request.user, price=price, tax=0, subtotal=subtotal, description=description, category=category, date=datetime.date.today() )
+        Pembukuan.objects.create(owner=request.user, price=price, tax=0, subtotal=subtotal, description=description, category=category, date=datetime.date.today(), profit=profit)
         messages.success(request, 'Penjualan Produk Sukses. Stok telah diperbaharui.')
 
         return redirect('pembukuan')

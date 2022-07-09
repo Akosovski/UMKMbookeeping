@@ -1,4 +1,5 @@
 import json
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse
@@ -7,6 +8,7 @@ from validate_email import validate_email
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.contrib import auth
+from django.contrib.auth.models import Permission
 # Create your views here.
 
 class EmailValidationView(View):
@@ -34,18 +36,12 @@ class RegistrationView(View):
         return render(request, 'authentication/register.html')
 
     def post(self, request):
-       #GET USER DATA
-       #VALIDATE
-       #CREATE A USER ACCOUNT
-
        username = request.POST['username']
        email = request.POST['email']
        password = request.POST['password']
-
        context={
         'fieldValues':request.POST
        }
-
        if not User.objects.filter(username=username).exists():
             if not User.objects.filter(email=email).exists():
                 if len(password)<6:
@@ -70,9 +66,7 @@ class LoginView(View):
         password=request.POST['password']
 
         if username and password:
-
             user = auth.authenticate(username=username, password=password)
-
             if user:
                 if user.is_active:
                     auth.login(request, user)

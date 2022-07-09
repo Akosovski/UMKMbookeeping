@@ -3,10 +3,16 @@ let rupiahIDR = Intl.NumberFormat("id-ID", {
     currency: "IDR",
 });
 
-const nodeList = document.querySelectorAll("td[target]");
-for (let i = 0; i < nodeList.length; i++) {
-    var price = nodeList[i].innerHTML;
-    nodeList[i].innerHTML = rupiahIDR.format(price);
+const tableList = document.querySelectorAll("td[target]");
+for (let i = 0; i < tableList.length; i++) {
+    var price = tableList[i].innerHTML;
+    tableList[i].innerHTML = rupiahIDR.format(price);
+}
+
+const totalList = document.querySelectorAll("h5[target]");
+for (let j = 0; j < totalList.length; j++) {
+    var totals = totalList[j].innerHTML;
+    totalList[j].innerHTML = rupiahIDR.format(totals);
 }
 
 const renderChart=(data,labels)=>{
@@ -41,10 +47,6 @@ const renderChart=(data,labels)=>{
 
 };
 
-const totalPengeluaran = document.getElementById('total-pengeluaran');
-const totalPemasukan = document.getElementById('total-pemasukan');
-const totalLain = document.getElementById('total-lain');
-
 const getChartData=()=>{
     console.log("fetching chart");
     fetch("/pembukuan-chart")
@@ -60,7 +62,3 @@ const getChartData=()=>{
     });
 }
 document.onload=getChartData();
-
-// totalLain.innerHTML = values(category_data),
-// totalPemasukan.innerHTML = values(category_data),
-// totalPengeluaran.innerHTML = values(category_data),

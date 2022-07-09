@@ -24,7 +24,7 @@ def cari_produk(request):
 @login_required(login_url = '/authentication/login')
 def index(request):
     vendors = Vendor.objects.all()
-    produks = Produk.objects.filter(owner=request.user)
+    produks = Produk.objects.all()
     paginator = Paginator(produks, 5)
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)

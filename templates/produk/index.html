@@ -2,112 +2,123 @@
 
 {% block content %}
 
-<br>
-<div class="row g-0 m-2">
-    <div class="col-6 col-md-9 p-0">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-3">Produk</p></li>
-            </ol>
-        </nav>
-    </div>
-    <div class="col-6 col-md-3 mx-auto text-center">
-        <a href="{% url 'tambah-produk' %}" class="btn btn-md btn-outline-primary ms-2 w-100" style="max-width: 250px;">Tambah Produk</a>
-    </div>
-    <div class="form-group">
-        <input class="form-control mt-3" type="text" placeholder="&#128269; Cari Produk..." id="searchField-produk">
-    </div>
-</div>
-
-<div class="row mt-2 overflow-auto mh-100">
+<div class="sticky-container">
+    {% include 'partials/_sidebar.html' %}
+</div> 
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+<div class="container-fluid"> 
+    {% include 'partials/_messages.html' %}
     <br>
-    <div class="container mt-2">
-        <div class="app-table-produk">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nama Produk</th>
-                        <th>Harga Beli</th>
-                        <th>Harga Jual</th>
-                        <th>Deskripsi</th>
-                        <th>Stok</th>
-                        <th>Tanggal Pengadaan</th>
-                        <th>Tanggal Pembaharuan</th>
-                        <th>Vendor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% if produks.count %}
-                        {% for produk in page_obj %}
-                            <tr class="align-middle">
-                                <td>{{produk.name}}</td>
-                                <td target="_blank">{{produk.buyprice}}</td>
-                                <td target="_blank">{{produk.sellprice}}</td>
-                                <td>{{produk.description}}</td>
-                                <td>{{produk.stock}}</td>
-                                <td>{{produk.dateadded}}</td>
-                                <td>{{produk.dateupdated}}</td>
-                                <td>{{produk.vendor}}</td>
-                                <td><a href="{% url 'ubah-produk' produk.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
-                            </tr>
-                        {% endfor %}
-                    {% else %}
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>Produk Kosong</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-                {% endif %}
-            </table>
+    <div class="row g-0 m-2">
+        <div class="col-6 col-md-9 p-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-3">Produk</p></li>
+                </ol>
+            </nav>
         </div>
-
-        <p class="no-results-produk" style="display: none; text-align: center;"><br>Tidak ada hasil carian.</p>
-
-        <div class="table-output-produk">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nama Produk</th>
-                        <th>Harga Beli</th>
-                        <th>Harga Jual</th>
-                        <th>Deskripsi</th>
-                        <th>Stok</th>
-                        <th>Tanggal Pengadaan</th>
-                        <th>Tanggal Pembaharuan</th>
-                        <th>Vendor</th>
-                    </tr>
-                </thead>
-                <tbody class="table-body-produk">
-
-                </tbody>
-            </table>
+        <div class="col-6 col-md-3 mx-auto text-center">
+            <a href="{% url 'tambah-produk' %}" class="btn btn-md btn-outline-primary ms-2 w-100" style="max-width: 250px;">Tambah Produk</a>
         </div>
+        <div class="form-group">
+            <input class="form-control mt-3" type="text" placeholder="&#128269; Cari Produk..." id="searchField-produk">
+        </div>
+    </div>
 
-        <div class="container d-flex justify-content-end" id="pagination-container-produk">
-            <div class="mt-2 m-5">
-                Halaman {{page_obj.number}} dari {{ page_obj.paginator.num_pages }}
+    <div class="row mt-2 overflow-auto mh-100">
+        <br>
+        <div class="container mt-2">
+            <div class="app-table-produk">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nama Produk</th>
+                            <th>Harga Beli</th>
+                            <th>Harga Jual</th>
+                            <th>Deskripsi</th>
+                            <th>Stok</th>
+                            <th>Tanggal Pengadaan</th>
+                            <th>Tanggal Pembaharuan</th>
+                            <th>Vendor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if produks.count %}
+                            {% for produk in page_obj %}
+                                <tr class="align-middle">
+                                    <td>{{produk.name}}</td>
+                                    <td target="_blank">{{produk.buyprice}}</td>
+                                    <td target="_blank">{{produk.sellprice}}</td>
+                                    <td>{{produk.description}}</td>
+                                    <td>{{produk.stock}}</td>
+                                    <td>{{produk.dateadded}}</td>
+                                    <td>{{produk.dateupdated}}</td>
+                                    <td>{{produk.vendor}}</td>
+                                    <td><a href="{% url 'ubah-produk' produk.id %}" class="btn btn-primary btn-sm">Ubah</a></td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Produk Kosong</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    {% endif %}
+                </table>
             </div>
-            <div class="">     
-                <ul class="pagination">
-                    {% if page_obj.has_previous %}
-                    <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a></li>
-                    <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Kembali</a></li>
-                    {% endif %}
-              
-                    {% if page_obj.has_next %}
-                    <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Berikutnya</a></li>
-                    <li class="page-item"> <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
-                    {% endif %}
-                </ul>           
+
+            <p class="no-results-produk" style="display: none; text-align: center;"><br>Tidak ada hasil carian.</p>
+
+            <div class="table-output-produk">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nama Produk</th>
+                            <th>Harga Beli</th>
+                            <th>Harga Jual</th>
+                            <th>Deskripsi</th>
+                            <th>Stok</th>
+                            <th>Tanggal Pengadaan</th>
+                            <th>Tanggal Pembaharuan</th>
+                            <th>Vendor</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body-produk">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container d-flex justify-content-end" id="pagination-container-produk">
+                <div class="mt-2 m-5">
+                    Halaman {{page_obj.number}} dari {{ page_obj.paginator.num_pages }}
+                </div>
+                <div class="">     
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                        <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a></li>
+                        <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Kembali</a></li>
+                        {% endif %}
+                
+                        {% if page_obj.has_next %}
+                        <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Berikutnya</a></li>
+                        <li class="page-item"> <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+                        {% endif %}
+                    </ul>           
+                </div>
             </div>
         </div>
     </div>
 </div>
-
+{% else %}
+    <div class="container-fluid">
+        <h3 class="text-center position-absolute top-50 start-50 translate-middle">Maaf, Anda tidak memiliki akses ke laman ini.</h3>
+    </div>
+{% endif %}
 {% endblock content %}
