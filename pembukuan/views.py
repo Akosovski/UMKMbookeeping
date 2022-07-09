@@ -7,8 +7,13 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.paginator import Paginator
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import datetime
+import xlwt
+from django.template.loader import render_to_string
+from weasyprint import HTML
+import tempfile
+from django.db.models import Sum
 
 def cari_pembukuan(request):
     if request.method == 'POST':
@@ -227,3 +232,65 @@ def jual_produk(request):
         messages.success(request, 'Penjualan Produk Sukses. Stok telah diperbaharui.')
 
         return redirect('pembukuan')
+
+def export_excel(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=Pembukuan'+ \
+        str(datetime.datetime.now())+'.xls'
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws=wb.add_sheet('Pembukuan')
+    row_num=0
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Date', 'Description', 'Price in Rp.', 'Tax', 'Category', 'Sub-Total']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+    font_style = xlwt.XFStyle()
+
+    rows=Pembukuan.objects.filter(owner=request.user).values_list(
+        'date', 'description', 'price', 'tax', 'category', 'subtotal')
+
+    for row in rows:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+    wb.save(response)
+
+    return response
+
+
+def export_pdf(request):
+    
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=Pembukuan'+ \
+        str(datetime.datetime.now())+'.pdf'
+    response['Content-Transfer-Encoding'] = 'binary'
+
+    pembukuans = Pembukuan.objects.filter(owner=request.user)
+    category_pemasukan = Pembukuan.objects.filter(category='Pemasukan')
+    sum_pemasukan = 0
+    for item in category_pemasukan:
+         sum_pemasukan += item.subtotal
+    category_pengeluaran = Pembukuan.objects.filter(category='Pengeluaran')
+    sum_pengeluaran = 0
+    for item in category_pemasukan:
+         sum_pengeluaran += item.subtotal
+    
+    
+    
+
+    html_string = render_to_string(
+        'pembukuan/pdf-output.html',{'pembukuans': pembukuans, 'total1': sum_pemasukan, 'total2': sum_pengeluaran})
+    html=HTML(string=html_string)
+
+    result=html.write_pdf()
+
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output.seek(0)
+        response.write(output.read())
+
+    return response

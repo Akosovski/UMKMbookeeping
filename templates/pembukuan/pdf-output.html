@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>PDF Output</title>
+
+    <style>
+
+        @page{
+            size: "A4";
+            margin: 2,5cm 1.5cm 3.5cm 1.5cm;
+
+            @top-center{
+                content: "Ringkasan Pembukuan";
+            }
+
+            @bottom-right{
+                content: "Page" counter(page) " of " counter(pages);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
+                    <th>Harga</th>
+                    <th>Pajak</th>
+                    <th>Total</th>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for pembukuan in pembukuans %}
+                    {% if pembukuan.category == 'Pemasukan' %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{pembukuan.date}}</td>
+                            <td>{{pembukuan.category}}</td>
+                            <td>{{pembukuan.description}}</td>
+                            <td>{{pembukuan.price}}</td>
+                            <td>{{pembukuan.tax}}</td>
+                            <td>{{pembukuan.subtotal}}</td>
+                        </tr>
+                    {% endif %}
+                
+                {% endfor %}
+                <br>
+                <tr>
+                    <td>Total</td>
+                    <td>{{total1}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div>
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
+                    <th>Harga</th>
+                    <th>Pajak</th>
+                    <th>Total</th>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for pembukuan in pembukuans %}
+                    {% if pembukuan.category == 'Pengeluaran' %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{pembukuan.date}}</td>
+                            <td>{{pembukuan.category}}</td>
+                            <td>{{pembukuan.description}}</td>
+                            <td>{{pembukuan.price}}</td>
+                            <td>{{pembukuan.tax}}</td>
+                            <td>{{pembukuan.subtotal}}</td>
+                        </tr>
+                    {% endif %}
+                
+                {% endfor %}
+                <br>
+                <tr>
+                    <td>Total</td>
+                    <td>{{total2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div>
+       <h3>Total</h3>
+       <h3>{{total}}</h3>
+    </div> -->
+</body>
+</html>

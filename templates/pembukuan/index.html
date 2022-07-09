@@ -165,8 +165,8 @@
         <div class="container-fluid d-flex w-150 w-md-25 h-auto mt-2 mb-1 justify-content-center flex-column">
             <div class="card p-4 w-100 h-50">
                 <h2 class="text-center mb-3">MENGUBAH FORMAT PEMBUKUAN</h2>
-                <a href="#" class="btn btn-primary m-2">Ubah Pembukuan menjadi bentuk PDF</a>
-                <a href="#" class="btn btn-success m-2">Ubah Pembukuan menjadi bentuk Excel</a>
+                <a href="{% url 'export-pdf' %}" class="btn btn-primary m-2">Ubah Pembukuan menjadi bentuk PDF</a>
+                <a href="{% url 'export-excel' %}" class="btn btn-success m-2">Ubah Pembukuan menjadi bentuk Excel</a>
             </div>
             <div class="w-100 h-50 p-1">
                 <div class="row d-flex justify-content-between">
