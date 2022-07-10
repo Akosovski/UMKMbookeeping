@@ -256,7 +256,7 @@ def export_excel(request):
         ws.write(row_num, col_num, columns[col_num], font_style)
     font_style = xlwt.XFStyle()
 
-    rows=Pembukuan.objects.filter(owner=request.user).values_list(
+    rows=Pembukuan.objects.values_list(
         'date', 'description', 'price', 'tax', 'category', 'subtotal')
 
     for row in rows:
@@ -269,13 +269,13 @@ def export_excel(request):
 
 
 def export_pdf(request):
-    
+
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=Pembukuan'+ \
         str(datetime.datetime.now())+'.pdf'
     response['Content-Transfer-Encoding'] = 'binary'
 
-    pembukuans = Pembukuan.objects.filter(owner=request.user)
+    pembukuans = Pembukuan.objects.all()
     category_pemasukan = Pembukuan.objects.filter(category='Pemasukan')
     sum_pemasukan = 0
     for item in category_pemasukan:
