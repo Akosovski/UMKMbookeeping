@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+import django_heroku
 from pathlib import Path
 from django.contrib import messages
 
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-m6%=5=#27%y(k0^6(+melmu@v55%scfxwy0+r^7&yakyq^--^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['umkm-bookeeping.herokuapp.com']
 
 
 # Application definition
@@ -80,13 +81,24 @@ WSGI_APPLICATION = 'umkmbookeeping.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'umkmbookeeping',
-        'USER': 'postgres',
-        'PASSWORD': 'Ussiowabb61',
-        'HOST': 'localhost',
+        'NAME': 'dfqvhkmo1kscc5',
+        'USER': 'ahednnyaixkqpr',
+        'PASSWORD': 'a6a0edeab6cead47f48fdd772f195d0f47c26a438f9a267bd14181242542471a',
+        'HOST': 'ec2-34-239-241-121.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
+# Localhost Usage
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'umkmbookeeping',
+#        'USER': 'postgres',
+#        'PASSWORD': '-password-',
+#        'HOST': 'localhost',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -125,6 +137,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'umkmbookeeping/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
