@@ -1,13 +1,19 @@
 [[source]]
+name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-name = "pypi"
-
-[packages]
-django-heroku = "*"
-validate-email = "*"
 
 [dev-packages]
+
+[packages]
+django = "*"
+psycopg2 = "*"
+django-heroku = "*"
+gunicorn = "*"
+validate-email = "*"
+six = "*"
+xlwt = "*"
+weasyprint = "*"
 
 [requires]
 python_version = "3.10"
