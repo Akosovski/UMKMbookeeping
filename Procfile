@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn umkmbookeeping.wsgi.application
+web: gunicorn umkmbookeeping.wsgi
