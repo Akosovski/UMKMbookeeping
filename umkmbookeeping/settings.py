@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-m6%=5=#27%y(k0^6(+melmu@v55%scfxwy0+r^7&yakyq^--^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['umkm-bookeeping.herokuapp.com']
+ALLOWED_HOSTS = ['umkmbookeeping.herokuapp.com']
 
 
 # Application definition
@@ -70,16 +70,17 @@ WSGI_APPLICATION = 'umkmbookeeping.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dfqvhkmo1kscc5',
-        'USER': 'ahednnyaixkqpr',
-        'PASSWORD': 'a6a0edeab6cead47f48fdd772f195d0f47c26a438f9a267bd14181242542471a',
-        'HOST': 'ec2-34-239-241-121.compute-1.amazonaws.com',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd2kr9lglpengho',
+        'USER': 'nqvcyuetroskak',
+        'PASSWORD': '63613f98395d5ec595bd2c336feafdccce429ea69e3b1b9849a57f7bef6a507b',
+        'HOST': 'ec2-54-159-22-90.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
 
-# Localhost Usage
+# Localhost Database Usage
+
 # DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql',
