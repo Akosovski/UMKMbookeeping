@@ -136,7 +136,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'umkmbookeeping/static')]
-STATIC_ROOT = "/var/www/umkmbookeeping/static/"
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 django_heroku.settings(locals())
 
 # Default primary key field type
