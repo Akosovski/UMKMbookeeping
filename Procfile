@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath umkmbookeeping umkmbookeeping.wsgi
+web: gunicorn umkmbookeeping.wsgi:application --log-file -
