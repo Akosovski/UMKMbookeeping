@@ -9,4 +9,4 @@ urlpatterns = [
     path('produk/', include('produk.urls')),
     path('karyawan/', include('karyawan.urls')),
     path('admin/', admin.site.urls),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
