@@ -164,8 +164,7 @@ def hapus_pembukuan(request, id):
 def pembukuan_chart(request):
     todays_date=datetime.date.today()
     six_months_ago=todays_date-datetime.timedelta(days=30*6)
-    pembukuans=Pembukuan.objects.filter(owner=request.user,
-        date__gte=six_months_ago,date__lte=todays_date)
+    pembukuans=Pembukuan.objects.filter(date__gte=six_months_ago,date__lte=todays_date)
     finalrep = {}
 
     def get_category(pembukuan):
@@ -173,23 +172,27 @@ def pembukuan_chart(request):
 
     category_list=list(set(map(get_category, pembukuans)))
 
-    def get_pembukuan_category_price(category):
-        price = 0
+    def get_pembukuan_category_subtotal(category):
+        subtotal = 0
         filtered_by_category=pembukuans.filter(category=category)
 
         for item in filtered_by_category:
-            price += item.price
-        return price
+            subtotal += item.subtotal
+        return subtotal
 
     for x in pembukuans:
         for y in category_list:
-            finalrep[y]=get_pembukuan_category_price(y)
+            finalrep[y]=get_pembukuan_category_subtotal(y)
 
     return JsonResponse({'pembukuan_category_data': finalrep}, safe=False)
 
 @login_required(login_url = '/authentication/login')
 def jual_produk(request):
     produks = Produk.objects.all()
+    if not produks:
+        messages.error(request, 'Produk Masih Kosong.')
+        return redirect('pembukuan')
+
     context = {
         'produks': produks
     }
@@ -212,6 +215,10 @@ def jual_produk(request):
         siproduk_stock = Produk.objects.get(name=name)
         intstock = siproduk_stock.stock
         stock_akhir = intstock - int(stock)
+
+        if stock_akhir < 0:
+            messages.error(request, 'Stok Produk Tidak Mencukupi.')
+            return render(request, 'pembukuan/jual_produk.html', context)
 
         if not description:
             messages.error(request, 'Deskripsi perlu diisi.')
@@ -275,11 +282,8 @@ def export_pdf(request):
          sum_pemasukan += item.subtotal
     category_pengeluaran = Pembukuan.objects.filter(category='Pengeluaran')
     sum_pengeluaran = 0
-    for item in category_pemasukan:
+    for item in category_pengeluaran:
          sum_pengeluaran += item.subtotal
-    
-    
-    
 
     html_string = render_to_string(
         'pembukuan/pdf-output.html',{'pembukuans': pembukuans, 'total1': sum_pemasukan, 'total2': sum_pengeluaran})

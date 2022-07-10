@@ -148,3 +148,29 @@ def hapus_produk(request, id):
 
     messages.success(request, 'Produk Berhasil Terhapus.')
     return redirect('produk')
+
+@login_required(login_url = '/authentication/login')
+def tambah_vendor(request):
+    vendors = Vendor.objects.all()
+    context = {
+       'vendors': vendors,
+    }
+    if request.method == 'GET':
+        return render(request, 'produk/tambah_vendor.html', context) 
+        
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        address = request.POST.get('address')
+
+        if not name:
+            messages.error(request, 'Nama Vendor perlu diisi.')
+            return render(request, 'produk/tambah_vendor.html', context)
+
+        if not address:
+            messages.error(request, 'Alamat Vendor perlu diisi.')
+            return render(request, 'produk/tambah_vendor.html', context)
+        
+        Vendor.objects.create(name=name, address=address)
+        messages.success(request, 'Penambahan Vendor Sukses.')
+
+        return redirect('produk')

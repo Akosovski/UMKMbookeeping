@@ -35,7 +35,7 @@
                 </thead>
                 <tbody>
                     {% for user in users %}
-                        {% if user.username == "Admin" %}
+                        {% if user.username == "admin" %}
                         <tr class="align-middle">
                             <td class="table-success">{{forloop.counter}}.</td>
                             <td class="table-success">{{user.username}}</td>

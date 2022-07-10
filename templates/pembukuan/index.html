@@ -88,7 +88,7 @@
                                         <td class="table-success" target="_blank">{{pembukuan.tax}}</td>
                                     {% endif %}
                                     <td class="table-success" target="_blank">{{pembukuan.subtotal}}</td>
-                                    {% if pembukuan.profit == null %}
+                                    {% if pembukuan.profit == 0 %}
                                         <td class="table-success">-</td>
                                     {% else %}
                                         <td class="table-success" target="_blank">{{pembukuan.profit}}</td>
@@ -103,6 +103,7 @@
                             <td></td>
                             <td></td>
                             <td>Pembukuan Kosong</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
