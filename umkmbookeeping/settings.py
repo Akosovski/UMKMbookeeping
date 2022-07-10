@@ -148,4 +148,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
-TEST_RUNNER = 'django_on_heroku.HerokuDiscoverRunner'
