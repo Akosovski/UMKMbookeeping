@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sticky-container">
+    {% include 'partials/_sidebar.html' %}
+</div> 
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+<div class="container-fluid"> 
+    {% include 'partials/_messages.html' %}
+    <br>
+    <div class="row m-1">
+        <div class="container m-0">
+            <div class="row g-0">
+                <div class="col-12 col-md-12 p-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item mt-2 ms-2" aria-current="page"><p class="fs-4">Ubah Detail UMKM</p></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container m-1 mb-4 mt-0">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{% url 'ubah-detail' %}" method="POST">
+                        {% csrf_token %}
+                        <label for="nameInput" class="mb-1">Nama Usaha</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" value="{{values.name}}" id="nameField" placeholder="Nama Usaha">
+                            <div class="form-text">Nama Usaha Yang Dijalankan <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body" style="margin-top: -7px;">
+                        <label for="pemilikInput" class="mb-1">Pemilik <span style="color: green;">(Opsional)</span></label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="pemilik" value="{{values.pemilik}}" id="pemilikField" placeholder="Pemilik Usaha">
+                            <div class="form-text">Ubah Pemilik <span style="color: green;">(Opsional)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="emailInput" class="mb-1">Email Usaha</label>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" value="{{values.email}}" id=emailField" placeholder="Email Usaha">
+                            <div class="form-text">Ubah Email Usaha <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="phoneInput" class="mb-1">No. Telpon Usaha</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="phone" value="{{values.phone}}" id="phoneField" placeholder="No. Telpon Usaha">
+                            <div class="form-text">Ubah No. Telpon Usaha <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="fieldInput" class="mb-1">Bidang Usaha <span style="color: green;">(Opsional)</span></label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="field" value="{{values.field}}" placeholder="Bidang Usaha">
+                            <div class="form-text">Ubah Bidang Usaha <span style="color: green;">(Opsional)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="addressInput" class="mb-1">Alamat</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="address" value="{{values.address}}" placeholder="Alamat Usaha">
+                            <div class="form-text">Ubah Alamat Usaha <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="cityInput" class="mb-1">Kota <span style="color: green;">(Opsional)</span></label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="city" value="{{values.city}}" placeholder="Kota Usaha">
+                            <div class="form-text">Ubah Kota <span style="color: green;">(Opsional)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body text-center mb-3">
+                        <input type="submit" value="Simpan Perubahan" class="btn btn-primary">
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    <div class="container-fluid">
+        <h3 class="text-center position-absolute top-50 start-50 translate-middle">Maaf, Anda tidak memiliki akses ke laman ini.</h3>
+    </div>
+{% endif %}
+{% endblock content %}

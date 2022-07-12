@@ -9,16 +9,17 @@
     {% include 'partials/_messages.html' %}
     <br>
     <div class="row g-0 m-2">
-        <div class="col-5 col-md-9 p-0">
+        <div class="col-7 col-md-10 p-0">
+            <a href="{% url 'detail-umkm' %}" class="btn btn-md sm-btn-sm btn-outline-primary mr-2 h-25"><p style="margin-top: -3px;">Detail UMKM</p></a>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item mt-5 ms-2" aria-current="page"><p class="fs-3">Pembukuan</p></li>
                 </ol>
             </nav>
         </div>
-        <div class="col-7 col-md-3 col-sm-3 mx-auto">
-            <a href="{% url 'tambah-pembukuan' %}" class="btn btn-md btn-outline-primary mr-2 w-100" style="max-width: 250px;">Tambah Pembukuan</a>
-            <a href="{% url 'jual-produk' %}" class="btn btn-md btn-outline-primary mt-2 w-100 mb-2" style="max-width: 250px;">Jual Produk</a>
+        <div class="col-5 col-md-2 col-sm-2 mx-auto">
+            <a href="{% url 'tambah-pembukuan' %}" class="btn btn-md sm-btn-sm btn-outline-primary mr-2 w-100" style="max-width: 250px;">Tambah Pembukuan</a>
+            <a href="{% url 'jual-produk' %}" class="btn btn-md sm-btn-sm btn-outline-primary mt-2 w-100 mb-2" style="max-width: 250px;">Jual Produk</a>
         </div>
         <div class="form-group">
             <input class="form-control mt-3" type="text" placeholder="&#128269; Cari Pembukuan..." id="searchField">
@@ -155,7 +156,7 @@
         </div>
     </div>
     <hr>
-    <div class="d-flex m-1 mb-4 flex-md-row flex-column">
+    <div class="d-flex m-1 mb-4 flex-md-row flex-column overflow-auto">
         <div class="container w-100 w-md-75 mt-2 mb-1" style="max-width: 600px">
             <div class="card p-2">
                 <h4 class="mt-2 mb-3 text-center">NILAI TOTAL PEMBUKUAN BERDASARKAN KATEGORI</h4>
@@ -185,7 +186,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card p-4 w-100 h-50 mt-1">
+            <div class="card p-3 w-100 h-50 mt-1">
                 <h2 class="text-center mt-1">INFO TENTANG UMKMbookeeping</h2>
                 <p class="mt-1 text-center mb-0 fs-5">Aplikasi <span class="fw-bold">UMKMbookeeping</span> ini merupakan aplikasi yang dibuat untuk mempermudah pelaku UMKM
                     dalam melakukan proses pembukuan dan pengelolaan usaha mereka. Setiap pembukuan dapat ditambahkan secara manual ataupun secara otomatis ketika pelaku atau karyawan menjual produk. 

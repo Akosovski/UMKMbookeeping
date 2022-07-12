@@ -1,6 +1,7 @@
+from dataclasses import field
 from django.contrib.auth.decorators import login_required
 from multiprocessing import context
-from .models import Category, Pembukuan
+from .models import Category, Pembukuan, Details
 from produk.models import Produk
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -13,7 +14,6 @@ import xlwt
 from django.template.loader import render_to_string
 from weasyprint import HTML
 import tempfile
-from django.db.models import Sum
 
 def cari_pembukuan(request):
     if request.method == 'POST':
@@ -57,6 +57,70 @@ def index(request):
         'total_lain': total_lain,
     }
     return render(request, 'pembukuan/index.html', context)
+
+@login_required(login_url = '/authentication/login')
+def detail_umkm(request):
+    details = Details.objects.all()
+    context = {
+        'details': details,
+    }
+    return render(request, 'pembukuan/detail_umkm.html', context)
+
+@login_required(login_url = '/authentication/login')
+def ubah_detail(request):
+    dynamic_name = ''
+    details = Details.objects.get(name=dynamic_name)
+    context = {
+        'details': details,
+    }
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        pemilik = request.POST.get('pemilik')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        field = request.POST.get('field')
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+
+        if not name:
+            messages.error(request, 'Nama usaha perlu diisi.')
+            return render(request, 'pembukuan/ubah_detail.html', context)
+
+        if not pemilik:
+            pemilik = "-"
+
+        if not email:
+            messages.error(request, 'Email Perlu diisi.')
+            return render(request, 'pembukuan/ubah_detail.html', context)
+
+        if not phone:
+            messages.error(request, 'No. Telpon perlu diisi.')
+            return render(request, 'pembukuan/ubah_detail.html', context)
+
+        if not field:
+            field = "-"
+        
+        if not address:
+            messages.error(request, 'Alamat perlu diisi.')
+            return render(request, 'pembukuan/ubah_detail.html', context)
+
+        if not city:
+            field = "-"
+
+        dynamic_name = name
+        details.name = name
+        details.pemilik = pemilik
+        details.email = email
+        details.phone = phone
+        details.field = field
+        details.address = address
+        details.city = city
+
+        details.save()
+        messages.success(request, 'Perubahan Detail Usaha Sukses.')
+
+        return redirect('detail-umkm')
+    return render(request, 'pembukuan/ubah_detail.html')
 
 @login_required(login_url = '/authentication/login')
 def tambah_pembukuan(request):

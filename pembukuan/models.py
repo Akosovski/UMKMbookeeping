@@ -22,3 +22,12 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'Categories'
+
+class Details(models.Model):
+    name = models.CharField(max_length=255)
+    pemilik = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    phone = models.IntegerField()
+    field = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)

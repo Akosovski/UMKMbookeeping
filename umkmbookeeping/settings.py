@@ -86,10 +86,10 @@ DATABASES = {
 #        'ENGINE': 'django.db.backends.postgresql',
 #        'NAME': 'umkmbookeeping',
 #        'USER': 'postgres',
-#        'PASSWORD': '-password-',
+#        'PASSWORD': 'Ussiowabb61',
 #        'HOST': 'localhost',
 #    }
-#}
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
