@@ -16,6 +16,22 @@ for (let j = 0; j < totalList.length; j++) {
 }
 
 const renderChart=(data,labels)=>{
+    const bordercolor = [];
+    const backgroundcolor = [];
+    for (i = 0; i<labels.length; i++){
+        if (labels[i]=="Pengeluaran"){
+            backgroundcolor.push('rgba(255, 0, 0, 0.2)');
+            bordercolor.push('rgba(255, 99, 132, 1)');
+        }
+        if (labels[i]=="Pemasukan"){
+            backgroundcolor.push('rgba(0,128,0,0.2)');
+            bordercolor.push('rgba(0,128,0,1)');
+        }
+        if (labels[i]=="Lain-lain"){
+            backgroundcolor.push('rgba(54, 162, 235, 0.2)');
+            bordercolor.push('rgba(54, 162, 235, 1)');
+        }
+    }
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: "pie",
@@ -24,22 +40,8 @@ const renderChart=(data,labels)=>{
             datasets: [{
                 label: "Pembukuan 6 Bulan Terakhir",
                 data: data,
-                backgroundColor: [
-                    'rgba(255, 0, 0, 0.2)',
-                    'rgba(0,128,0,0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(0,128,0,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                backgroundColor: backgroundcolor,
+                borderColor: bordercolor,
                 borderWidth: 1
             }]
         }
