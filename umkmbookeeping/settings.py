@@ -79,6 +79,8 @@ DATABASES = {
     }
 }
 
+# Command to migrate in herokuapp: heroku run python manage.py migrate
+
 # Localhost Database Usage
 
 # DATABASES = {
