@@ -12,6 +12,6 @@ urlpatterns = [
     path('cari-pembukuan', csrf_exempt(views.cari_pembukuan), name="cari-pembukuan"),
     path('pembukuan-chart',views.pembukuan_chart, name="pembukuan-chart"),
     path('jual-produk',views.jual_produk, name="jual-produk"),
-    path('export-excel', views.export_excel, name="export-excel"),
+     path('export-excel', views.export_excel, name="export-excel"),
     path('export-pdf', views.export_pdf, name="export-pdf")
 ]
