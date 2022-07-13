@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sticky-container">
+    {% include 'partials/_sidebar.html' %}
+</div> 
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+<div class="container-fluid"> 
+    {% include 'partials/_messages.html' %}
+    <br>
+    <div class="row m-1">
+        <div class="container m-0">
+            <div class="row g-0">
+                <div class="col-9 col-md-11 p-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Ubah Pembukuan</p></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-3 col-md-1 mx-auto">
+                    <a href="{% url 'hapus-pembukuan' pembukuans.id %}" class="btn btn-md btn-outline-danger">Hapus</a>
+                </div>
+            </div>
+        </div>
+        <div class="container m-1 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{% url 'ubah-pembukuan' pembukuans.id %}" method="POST">
+                        {% csrf_token %}
+                        <label for="descriptionInput" class="mb-1">Deskripsi</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="description" value="{{values.description}}" id="descriptionField" placeholder="Keterangan">
+                            <div class="form-text">Ubah Deskripsi <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="priceInput" class="mb-1">Nilai</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="price" value="{{values.price}}" id="priceField" placeholder="Dalam Rupiah">
+                            <div class="form-text">Ubah Nilai <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="taxInput" class="mb-1">Pajak <span style="color: green;">(Opsional)</span></label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="tax" value="{{values.tax}}" id="taxField" placeholder="Dalam Rupiah">
+                            <div class="form-text">Ubah Pajak <span style="color: green;">(Jika ada)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="totalInput" class="mb-1">Total</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="subtotal" value="{{values.subtotal}}" id="subtotalField" placeholder="Jumlah + Pajak, Dalam Rupiah">
+                            <div class="form-text">Jumlah + Pajak, Otomatis Terupdate <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORY BUTUH POSTGRE -->
+                    <div class="card-body">
+                        <label for="" class="mb-1">Kategori</label>
+                        <div class="form-group">
+                            <select name="category" class="form-select" aria-label="Default select example">
+                                {% for category in categories %}
+                                    <option name="category" value="{{ category.name }}">{{ category.name }}</option>{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-text">Ubah Kategori <span style="color: red;">(Wajib dipilih)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="" class="mb-1">Tanggal Pembukuan</label>
+                        <div class="form-group col-md-6 col-sm-5 col-lg-2">
+                            <input type="date" class="form-control" name="date">
+                            <div class="form-text">Atur Tanggal <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+                    <div class="card-body text-center mb-3">
+                        <input type="submit" value="Simpan Perubahan" class="btn btn-primary">
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    <div class="container-fluid">
+        <h3 class="text-center position-absolute top-50 start-50 translate-middle">Maaf, Anda tidak memiliki akses ke laman ini.</h3>
+    </div>
+{% endif %}
+{% endblock content %}

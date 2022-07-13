@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sticky-container">
+    {% include 'partials/_sidebar.html' %}
+</div> 
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+<div class="container-fluid"> 
+    {% include 'partials/_messages.html' %}
+    <br>
+    <div class="row">
+        <div class="container m-1 mb-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Tambah Produk</p></li>
+                </ol>
+            </nav>
+        </div>
+        <div class="container m-1 mt-0 mb-4">
+            <div class="card">
+                <div class="card-body">
+                <form name="tambah-produk" action="{% url 'tambah-produk' %}" method="POST">
+                    {% csrf_token %}
+                        <label for="nameInput" class="mb-1">Nama</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" value="{{values.name}}" placeholder="Nama Produk" required>
+                            <div class="form-text">Masukan Nama Produk <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body">
+                        <label for="buypriceInput" class="mb-1">Harga Beli</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="buyprice" value="{{values.buyprice}}" id="buypriceField" placeholder="Dalam Rupiah" required>
+                            <div class="form-text">Masukan Harga Beli <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="sellpriceInput" class="mb-1">Harga Jual</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="sellprice" value="{{values.sellprice}}" id="sellpriceField" placeholder="Dalam Rupiah" required>
+                            <div class="form-text">Masukan Harga Jual <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="descriptionInput" class="mb-1">Deskripsi</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="description" value="{{values.description}}" id="descriptionField" placeholder="Keterangan" required>
+                            <div class="form-text">Masukan Deskripsi <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="stockInput" class="mb-1">Stok</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="stock" value="{{values.stock}}" id="stockField" placeholder="Stok Barang" required>
+                            <div class="form-text">Masukan Stok Produk <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="" class="mb-1">Tanggal Pengadaan</label>
+                        <div class="form-group col-md-6 col-sm-5 col-lg-2">
+                            <input type="date" class="form-control" name="dateadded" id="dateField">
+                            <div class="form-text">Atur Tanggal Pengadaan <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <!-- VENDOR BUTUH POSTGRE -->
+                    <div class="card-body">
+                        <label for="" class="mb-1">Vendor</label>
+                        <div class="form-group">
+                            <select name="vendor" class="form-select" aria-label="Default select example">
+                                {% for vendor in vendors %}
+                                    <option name="vendor" value="{{vendor.name}}">{{vendor.name}}</option>{{vendor.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-text">Pilih Vendor <span style="color: red;">(Wajib dipilih)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body text-center mb-3">
+                        <input type="submit" value="Tambah Produk" class="btn btn-primary">
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    <div class="container-fluid">
+        <h3 class="text-center position-absolute top-50 start-50 translate-middle">Maaf, Anda tidak memiliki akses ke laman ini.</h3>
+    </div>
+{% endif %}
+{% endblock content %}

@@ -1,10 +1,52 @@
-{% extends 'base_auth.html' %}
+{% extends 'base_auth.html' %} 
+{% load static %}
 
 {% block content %}
 
-<div class="card"></div>
-<div class="card-body"></div>
-<h1>Login</h1>
-<div></div>
+<div class="container">
+    <div class="card position-absolute top-50 start-50 translate-middle p-5 pt-4" style="min-width: 22rem; max-width: 28rem; max-height: 36rem;">
+        <form action="{% url 'login' %}" method="post">
+        <div class="row"> 
+                <h3 class="m-auto">MASUK</h3>
+                {% csrf_token %}
+                <div class="overflow-hidden">{% include 'partials/_messages.html' %}</div>
+                <div class="form-group mt-4">
+                    <label for="exampleFormControlInput1" class="form-label">Nama</label>
+                    <input 
+                        type="text"
+                        name="username" 
+                        placeholder= "Nama" 
+                        class="form-control" 
+                        id="usernameField"
+                        value="{{fieldValues.username}}"
+                    />
+                </div>
+                <div class="form-group mt-4">
+                    <label for="exampleFormControlTextarea1" class="form-label">Kata Sandi</label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="Kata Sandi" 
+                        class="form-control" 
+                        id="passwordField"
+                    />
+                    <small class="btn btn-link float-end py-2 showPasswordToggle" style="text-decoration: none;">TAMPILKAN</small>
+                </div>
+                <div class="container mt-3 mx-auto">
+                    <div class="d-flex">
+                        <input 
+                            type="submit" 
+                            value="Masuk" 
+                            class="w-100 m-auto btn btn-outline-primary btn-md"
+                            style="width: auto"
+                        />
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{% static 'js/register.js' %}"></script>
 
 {% endblock content %}
