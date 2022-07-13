@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="sticky-container">
+    {% include 'partials/_sidebar.html' %}
+</div> 
+<div class="container-fluid"> 
+    {% include 'partials/_messages.html' %}
+    <div class="row">
+        <div class="container m-1 mt-3 mb-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4">Jual Produk</p></li>
+                </ol>
+            </nav>
+        </div>
+        <div class="container m-1 mt-0 mb-4">
+            <div class="card">
+                    <div class="card-body">
+                    <form name="jual-produk" action="{% url 'jual-produk' %}" method="POST">
+                        {% csrf_token %}
+                        <label for="productName" class="mb-1">Nama Produk Terjual</label>
+                        <div class="form-group">
+                            <select name="produk" class="form-select" aria-label="Default select example">
+                                {% for produk in produks %}
+                                    <option name="produk" value="{{ produk.name }}">{{ produk.name }}</option>{{ produk.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-text">Pilih Kategori <span style="color: red;">(Wajib dipilih)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="priceInput" class="mb-1">Jumlah Produk Terjual</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="stock" value="{{values.stock}}" id="stockField" placeholder="Jumlah Produk Terjual" required>
+                            <div class="form-text">Masukan Jumlah Produk Yang Terjual <span style="color: red;">(Wajib diisi)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card-body text-center mb-3">
+                        <input type="submit" value="Jual Produk" class="btn btn-primary">
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

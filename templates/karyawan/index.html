@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="sticky-container">
+    {% include 'partials/_sidebar.html' %}
+</div> 
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+<div class="container-fluid"> 
+    {% include 'partials/_messages.html' %}
+    <br>
+    <div class="row g-0 m-2">
+        <div class="col-6 col-md-9 p-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-3">Karyawan</p></li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-6 col-md-3 mx-auto">
+            <a href="{% url 'tambah-karyawan' %}" class="btn btn-md btn-outline-primary w-100" style="max-width: 250px;">Tambah Karyawan</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row mt-1 overflow-auto mh-100">
+        <br>
+        <div class="container mt-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="align-middle">
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        {% if user.username == "admin" %}
+                        <tr class="align-middle">
+                            <td class="table-success">{{forloop.counter}}.</td>
+                            <td class="table-success">{{user.username}}</td>
+                            <td class="table-success">{{user.email}}</td>
+                        </tr>
+                        {% else %}
+                        <tr class="align-middle">
+                            <td class="table-info">{{forloop.counter}}.</td>
+                            <td class="table-info">{{user.username}}</td>
+                            <td class="table-info">{{user.email}}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="d-flex m-1 mt-2 mb-3 flex-md-row flex-column">
+        <div class="card">
+            
+        </div>
+    </div>
+</div>
+{% else %}
+    <div class="container-fluid">
+        <h3 class="text-center position-absolute top-50 start-50 translate-middle">Maaf, Anda tidak memiliki akses ke laman ini.</h3>
+    </div>
+{% endif %}
+{% endblock content %}

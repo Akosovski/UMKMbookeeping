@@ -1,0 +1,44 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+asgiref="*"
+Brotli="*"
+certifi="*"
+cffi="*"
+cssselect2="*"
+distlib="*"
+dj-database-url="*"
+Django="*"
+django-heroku="*"
+django-phone-field="*"
+filelock="*"
+fonttools="*"
+gunicorn="*"
+html5lib="*"
+Pillow="*"
+pipenv="*"
+platformdirs="*"
+psycopg2="*"
+pycparser="*"
+pydyf="*"
+pyphen="*"
+six="*"
+sqlparse="*"
+tinycss2="*"
+tzdata="*"
+validate-email="*"
+virtualenv="*"
+virtualenv-clone="*"
+weasyprint="*"
+webencodings="*"
+whitenoise="*"
+xlwt="*"
+zopfli="*"
+
+[requires]
+python_version = "3.10"

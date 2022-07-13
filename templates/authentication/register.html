@@ -1,10 +1,79 @@
-{% extends 'base_auth.html' %}
+{% extends 'base_auth.html' %} 
+{% load static %}
 
-{% block content %}
-
-<div class="card"></div>
-<div class="card-body"></div>
-<h1>Register</h1>
-<div></div>
-
+{% block content %} 
+<div class="sticky-container">
+    {% include 'partials/_sidebar.html' %}
+</div> 
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+<div class="container m-1 mb-0">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item mt-2" aria-current="page"><p class="fs-4 mt-4 mb-2">Daftar Akun Karyawan Baru</p></li>
+        </ol>
+    </nav>
+</div>
+<div class="container-fluid">
+    <div class="card p-4 pt-4">
+        <form action="{% url 'register' %}" method="post">
+        <div class="row"> 
+                {% csrf_token %}
+                <div class="overflow-hidden">{% include 'partials/_messages.html' %}</div>
+                <div class="form-group mt-4">
+                    <label class="form-label">Nama Karyawan</label>
+                    <input 
+                        type="text"
+                        name="username" 
+                        placeholder= "Nama Karyawan" 
+                        class="form-control" 
+                        id="usernameField"
+                        value="{{fieldValues.username}}"
+                    />
+                    <div class="mt-1 invalid-feedback invalid-feedback" style="display:none"></div>
+                    <p class="mt-1 text sm text-success usernameSuccessOutput"></p>
+                </div>
+                <div class="form-group mt-4">
+                    <label class="form-label">Email Karyawan</label>
+                    <input 
+                        type="email"
+                        name="email" 
+                        placeholder= "Email Karyawan" 
+                        class="form-control" 
+                        id="emailField"
+                        value="{{fieldValues.email}}"
+                    />
+                    <div class="mt-1 emailFeedbackArea invalid-feedback" style="display:none"></div>
+                    <p class="mt-1 text sm text-success usernameSuccessOutput"></p>
+                </div>
+                <div class="form-group mt-4">
+                    <label class="form-label">Kata Sandi Akun</label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="Kata Sandi Akun" 
+                        class="form-control" 
+                        id="passwordField"
+                    />
+                    <small class="btn btn-link float-start py-2 showPasswordToggle" style="text-decoration: none;">TAMPILKAN</small>
+                </div>
+                <div class="container mt-4">
+                    <div class="d-flex">
+                        <input 
+                            type="submit" 
+                            value="DAFTARKAN AKUN KARYAWAN" 
+                            class="m-auto btn btn-outline-primary btn-md"
+                            style="width: auto"
+                        />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{% static 'js/register.js' %}"></script>
+{% else %}
+    <div class="container-fluid">
+        <h3 class="text-center position-absolute top-50 start-50 translate-middle">Maaf, Anda tidak memiliki akses ke laman ini.</h3>
+    </div>
+{% endif %}
 {% endblock content %}
