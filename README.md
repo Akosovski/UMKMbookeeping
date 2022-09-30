@@ -1,5 +1,5 @@
 ## UMKM Bookeeping
-**UMKM Bookeeping** is a web application created to facilitate MSME actors in carrying out the bookkeeping process and managing their business. Each bookkeeping can be added manually or automatically when actors or employees sell their products.
+**UMKM Bookeeping** is a web application created to facilitate MSME actors in carrying out the bookkeeping process and managing their business. Each bookkeeping can be added manually or automatically when actors or employees sell their products.</br>
 **Skripsi Even Semester 2021/2022 - BINUS UNIVERSITY**
 
 ---
