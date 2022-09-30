@@ -69,30 +69,30 @@ WSGI_APPLICATION = 'umkmbookeeping.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2kr9lglpengho',
-        'USER': 'nqvcyuetroskak',
-        'PASSWORD': '63613f98395d5ec595bd2c336feafdccce429ea69e3b1b9849a57f7bef6a507b',
-        'HOST': 'ec2-54-159-22-90.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd2kr9lglpengho',
+#         'USER': 'nqvcyuetroskak',
+#         'PASSWORD': '63613f98395d5ec595bd2c336feafdccce429ea69e3b1b9849a57f7bef6a507b',
+#         'HOST': 'ec2-54-159-22-90.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 # Command to migrate in herokuapp: heroku run python manage.py migrate
 
 # Localhost Database Usage
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'umkmbookeeping',
-#        'USER': 'postgres',
-#        'PASSWORD': 'db-password',
-#        'HOST': 'localhost',
-#    }
-# }
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'dummybookeeping',
+       'USER': 'postgres',
+       'PASSWORD': 'Ussiowabb61',
+       'HOST': 'localhost',
+   }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
