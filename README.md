@@ -1,5 +1,5 @@
 ## UMKM Bookeeping
-**UMKM Bookeeping** is a web application created to facilitate MSME actors in carrying out the bookkeeping process and managing their business. Each bookkeeping can be added manually or automatically when actors or employees sell their products.</br>
+**UMKM Bookeeping** is a web application created to facilitate MSME actors in carrying out the bookkeeping process and managing their business. Each bookkeeping can be added manually or automatically when actors or employees sell their products. (Currently Offline)</br>
 
 **Skripsi Even Semester 2021/2022** </br>**BINUS UNIVERSITY**
 
@@ -20,6 +20,5 @@
 </p>
 
 <p align="left">
-  <a href="https://heroku.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a>
   <a href="https://www.postgresql.org/" target="_blank"> <img src="https://www.svgrepo.com/show/354200/postgresql.svg" alt="postgre" width="40" height="40"/> </a>
 </p>
