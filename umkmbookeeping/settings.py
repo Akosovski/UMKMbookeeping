@@ -1,10 +1,11 @@
 from dotenv import load_dotenv
 
 import os
-load_dotenv()
 from pathlib import Path
 from django.contrib import messages
 import django_heroku
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,7 +19,7 @@ SECRET_KEY = 'django-insecure-m6%=5=#27%y(k0^6(+melmu@v55%scfxwy0+r^7&yakyq^--^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['umkmbookeeping.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition

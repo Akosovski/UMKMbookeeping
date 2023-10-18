@@ -22,3 +22,5 @@
 <p align="left">
   <a href="https://www.postgresql.org/" target="_blank"> <img src="https://www.svgrepo.com/show/354200/postgresql.svg" alt="postgre" width="40" height="40"/> </a>
 </p>
+
+This Project needs to install GTK3, link to download the exe : https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases
