@@ -28,12 +28,20 @@ Deploying Django Project Step by Step
 		}
 
 	-> Add the .env file to .gitignore file
-3. Migrate Database to Postgre :
+3. Install virtual environment : 
+	This step is done only if you haven't installed venv yet, to check -> Run in Terminal : pip list
+	-> Run in Terminal : pip install virtualenv
+	-> Run in Terminal : virtualenv -p python3 venv
+	-> There will be a venv folder inside the project
+	-> !IMPORTANT! You must enable virtual environment before running any command in the project
+	-> To run venv, Run in Terminal : venv\Scripts\activate
+	-> There will be (venv) on the terminal, that means you are inside the environment
+4. Migrate Database to Postgre :
 	-> Run in Terminal : python manage.py migrate
 	-> Check for Successful Migration
 	-> (Optional) Adding migrations to app example :
 		Run in Terminal : python manage.py migrate auth
-4. Running the project :
+5. Running the project :
 	-> Run in Terminal : python manage.py runserver
 	-> To Deactivate press Ctrl + C in Terminal
 
