@@ -1,5 +1,7 @@
+from dotenv import load_dotenv
 
 import os
+load_dotenv()
 from pathlib import Path
 from django.contrib import messages
 import django_heroku
@@ -69,29 +71,16 @@ WSGI_APPLICATION = 'umkmbookeeping.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'd2kr9lglpengho',
-#         'USER': 'nqvcyuetroskak',
-#         'PASSWORD': '63613f98395d5ec595bd2c336feafdccce429ea69e3b1b9849a57f7bef6a507b',
-#         'HOST': 'ec2-54-159-22-90.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
-# Command to migrate in herokuapp: heroku run python manage.py migrate
-
 # Localhost Database Usage
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'dummybookeeping',
-       'USER': 'postgres',
-       'PASSWORD': 'Ussiowabb61',
-       'HOST': 'localhost',
-   }
+    'default': {
+            'ENGINE': os.environ.get('DB_ENGINE'),
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+    }
 }
 
 # Password validation
