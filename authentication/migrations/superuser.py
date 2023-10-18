@@ -10,8 +10,8 @@ def create_superuser(apps, schema_editor):
     superuser.is_superuser = True
     superuser.is_staff = True
     superuser.username = os.environ.get('SUPERUSER_NAME')
-    superuser.email = os.environ.get('SUPERUSER_EMAIL'),
-    superuser.set_password(os.environ.get('SUPERUSER_PASSWORD'),)
+    superuser.email = os.environ.get('SUPERUSER_EMAIL')
+    superuser.set_password(os.environ.get('SUPERUSER_PASSWORD'))
     superuser.save()
 
 
