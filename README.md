@@ -4,9 +4,6 @@
 **Skripsi Even Semester 2021/2022** </br>**BINUS UNIVERSITY**
 
 ---
-<img src="https://cdn.discordapp.com/attachments/995173807750926346/1025696759550320690/Pembukuan_Owner.png" alt="showcase" width="650" height="750">
-
----
 
 ## Languages & Tools 🛠️
 
